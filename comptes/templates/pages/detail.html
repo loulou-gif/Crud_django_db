@@ -1,1 +1,196 @@
 <h1>test chap</h1>
+{% load static %}
+{% include 'main/header/header.html' %}
+<body>
+    <header>
+    {% include 'main/menu/menu_user.html' %}
+    </header>
+    <main id="main" class="main">
+
+        <div class="pagetitle">
+          <h1>Detail</h1>
+          <nav>
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="{% url 'detail' %}">Detail</a></li>
+              <li class="breadcrumb-item active">Membre</li>
+            </ol>
+          </nav>
+        </div><!-- End Page Title -->
+    
+        <section class="section profile">
+          <div class="row">
+            <div class="col-xl-4">
+                {% for info in info_professionnals  %}
+                <div class="card">
+                  <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+      
+                    <img src="/media/{{info.image_de_profil}}" alt="photo-de-profil" class="rounded-circle">
+                    <h2>{{user.username}}</h2>
+                  </div>
+                </div>
+                {% endfor %}
+            </div>
+    
+            <div class="col-xl-8">
+    
+              <div class="card">
+                <div class="card-body pt-3">
+                  <!-- Bordered Tabs -->
+                  <ul class="nav nav-tabs nav-tabs-bordered">
+    
+                    <li class="nav-item">
+                      <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview"></button>
+                    </li>
+    
+                    <li class="nav-item">
+                      <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-overview"></button>
+                    </li>
+    
+                    <li class="nav-item">
+                      <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-overview"></button>
+                    </li>
+    
+                    <li class="nav-item">
+                      <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-overview"></button>
+                    </li>
+    
+                  </ul>
+                  <div class="tab-content pt-2">
+                    
+                    <div class="tab-pane fade show active profile-overview" id="profile-overview">
+                      <h5 class="card-title">Description</h5>
+                      {% for info in info_professionnals%}
+                      <p class="small fst-italic">{{info.jobs_description}}</p>
+                        {% endfor %}
+                      <h5 class="card-title">Informations du membre</h5>
+    
+                      <div class="row">
+                        <div class="col-lg-3 col-md-4 label ">Nom complet</div>
+                        <div class="col-lg-9 col-md-8">{{user.last_name}} {{user.first_name}}</div>
+                      </div>
+                      {%for info in info_persons%} 
+                      <div class="row">
+                        <div class="col-lg-3 col-md-4 label ">Date de naissance</div>
+                        <div class="col-lg-9 col-md-8">{{info.birthday}}</div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-lg-3 col-md-4 label ">Situation matrimonial</div>
+                        <div class="col-lg-9 col-md-8">{{info.status}}</div>
+                      </div>
+    
+                      <div class="row">
+                        <div class="col-lg-3 col-md-4 label">Lieu d'habitation</div>
+                        <div class="col-lg-9 col-md-8">{{info.living_town}}, {{info.commune}}</div>
+                      </div>
+                                             
+    
+                      <div class="row">
+                        <div class="col-lg-3 col-md-4 label">Numéro de téléphone</div>
+                        <div class="col-lg-9 col-md-8">{{info.number}}</div>
+                      </div>
+    
+                      <div class="row">
+                        <div class="col-lg-3 col-md-4 label">Email</div>
+                        <div class="col-lg-9 col-md-8">{{user.email}}</div>
+                      </div>
+                      {% endfor %}
+
+                      {% for info in info_spirits%}
+                      <div class="row">
+                        <div class="col-lg-3 col-md-4 label">Né de nouveau</div>
+                        <div class="col-lg-9 col-md-8">{{info.water_baptem}}</div>
+                      </div>
+    
+                      {% comment %} <div class="row">
+                        <div class="col-lg-3 col-md-4 label">Date du Baptème</div>
+                        <div class="col-lg-9 col-md-8">{{info.date}} </div>
+                      </div> {% endcomment %}
+    
+                      <div class="row">
+                        <div class="col-lg-3 col-md-4 label">Baptisé du saint esprit</div>
+                        <div class="col-lg-9 col-md-8">{{info.spirit_baptem}}</div>
+                      </div>
+
+                      
+                      <div class="row">
+                        <div class="col-lg-3 col-md-4 label">Département</div>
+                        <div class="col-lg-9 col-md-8">{{info.department}}</div>
+                      </div>
+    
+                      <div class="row">
+                        <div class="col-lg-3 col-md-4 label">Groupe de jeunesse</div>
+                        <div class="col-lg-9 col-md-8">{{info.young_crue}} </div>
+                      </div>
+                      {% endfor %}
+                      {% for info in info_scolaires%}
+                      <div class="row">
+                        <div class="col-lg-3 col-md-4 label">Dernier diplôme</div>
+                        <div class="col-lg-9 col-md-8">{{info.last_diplom}}</div>
+                      </div>
+
+                      
+                      <div class="row">
+                        <div class="col-lg-3 col-md-4 label">Filière</div>
+                        <div class="col-lg-9 col-md-8">{{info.fields}}</div>
+                      </div>
+    
+                      <div class="row">
+                        <div class="col-lg-3 col-md-4 label">Niveau d'étude</div>
+                        <div class="col-lg-9 col-md-8">{{info.school_level}} </div>
+                      </div>
+    
+                      <div class="row">
+                        <div class="col-lg-3 col-md-4 label">Série du Bac</div>
+                        <div class="col-lg-9 col-md-8">{{info.type_bac}}</div>
+                      </div>
+                      {% endfor %}
+                      {% for info in info_persons%}
+                      <div class="row">
+                        <div class="col-lg-3 col-md-4 label">Domaines</div>
+                        <div class="col-lg-9 col-md-8">{{info.domaines}}</div>
+                      </div>
+                      {% endfor %}
+                      {% for info in info_professionnals%}
+                      <div class="row">
+                        <div class="col-lg-3 col-md-4 label">Travail</div>
+                        <div class="col-lg-9 col-md-8">{{info.working}} </div>
+                      </div>
+    
+                      <div class="row">
+                        <div class="col-lg-3 col-md-4 label">Metier</div>
+                        <div class="col-lg-9 col-md-8">{{info.jobs}}</div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-lg-3 col-md-4 label">Cv</div>
+                        <div class="col-lg-9 col-md-8"><a href="/media/{{info.cv}}" target="_blank" >CV de {{user.name}}</a></div>
+                      </div>
+                      {% endfor %}
+                      <div class="text-center">
+                        <style>
+                            .white{
+                              color:white;
+                            }
+                        </style>
+                          {% for info in info_persons  %}
+                          <a href="{% url 'update' info.user_id %}"> <button type="button" class="btn btn-primary">MODIFIER </button></a>
+                            {% endfor %}
+                       </div>
+                    </div>
+    
+    
+                  </div><!-- End Bordered Tabs -->
+    
+                </div>
+              </div>
+    
+            </div>
+          </div>
+        </section>
+    
+      </main><!-- End #main -->
+    <footer>
+        {% include 'main/footer/footer.html' %}
+    </footer>
+</body>

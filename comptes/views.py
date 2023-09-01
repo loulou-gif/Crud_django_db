@@ -114,7 +114,7 @@ def other_user(request):
         school.save()
         pro.save()
         
-        return redirect('update', id=request.user.id - 1)
+        return redirect('detail')
         
     context ={
         'user': user
