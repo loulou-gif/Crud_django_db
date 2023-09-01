@@ -21,6 +21,5 @@ from . import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('comptes/', include('comptes.urls')),
-    path('', include('formulaires.urls'))
+    path('', include('comptes.urls')),
 ]+ static(settings.MEDIA_URL , document_root = settings.MEDIA_ROOT)
