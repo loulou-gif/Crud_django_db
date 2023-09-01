@@ -1,0 +1,76 @@
+{% load static %}
+<header>
+    {% include 'main/header/header.html' %}
+</header>
+<body>
+    
+    <main id="main" class="main">
+    <div class="pagetitle">
+        <h1>Chart.js</h1>
+        <nav>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Acceuil</a></li>
+            
+            <li class="breadcrumb-item active">statistiques</li>
+          </ol>
+        </nav>
+    </div><!-- End Page Title -->
+  
+      <p>Toutes les statistiques concernant l'Eglise .</p>
+  
+      <section class="section">
+        <div class="row">
+  
+          
+  
+          <div class="col-lg-6">
+            <div class="card">
+              <div class="card-body"  style="height: 404px;">
+                <h5 class="card-title">Nombre de jeunes titulaire du baccalaureat dans l'église</h5>
+  
+                <!-- Pie Chart -->
+                
+                
+                <canvas id="pieChart" style="max-height: {{ pourcent_not_diplomed }}%;"></canvas>
+                <script>
+                    document.addEventListener("DOMContentLoaded", () => {
+                        new Chart(document.querySelector('#pieChart'), {
+                            type: 'pie',
+                            data: {
+                                labels: ['Titulaire du baccalauréat ', 'Non titulaire du baccalauréat '],
+                                datasets: [{
+                                    label: 'Répartition des baptisé et non baptisé par genre',
+                                    data: [{{ pourcent_not_diplomed | floatformat:2 }}, {{ pourcent_diplomed | floatformat:2 }}],
+                                    backgroundColor: ['rgb(75, 192, 192)', 'rgb(192, 75, 75)'],
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+                                scales: {
+                                    y: {
+                                        beginAtZero: true,
+                                        max: 100
+                                    }
+                                }
+                            }
+                        });
+                    });
+                </script>
+                
+                <p>Avec {{ number_diplomed }} jeunes titulaire du BACCALAUREAT sur un total de {{ total }} jeunes dans l'église</p>  
+              </div>
+             </div>
+            </div>
+          </div>
+
+    
+      </section>
+  
+    </main>
+  
+    {% include 'main/menu/menu.html' %}
+    <footer>
+        {% include 'main/footer/footer.html' %}
+    </footer>
+</body>
+</html>

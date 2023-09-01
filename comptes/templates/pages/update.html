@@ -1,0 +1,468 @@
+{% load static %}
+{% include 'main/header/header.html' %}
+<body>
+    <header>
+    {% include 'main/menu/menu_user.html' %}
+    </header>
+    <main id="main" class="main">
+
+        <div class="pagetitle">
+          <h1>Profil</h1>
+          <nav>
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="{% url 'index' %}">Acceuil</a></li>
+              <li class="breadcrumb-item active">Membres</li>
+            </ol>
+          </nav>
+        </div><!-- End Page Title -->
+    
+        <section class="section profile">
+          <div class="row">
+            <div class="col-xl-4">
+                {% for info in info_professionnals  %}
+              <div class="card">
+                <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+    
+                  <img src="/media/{{info.image_de_profil}}" alt="photo-de-profil" class="rounded-circle">
+                  <h2>{{user.name}}</h2>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+    
+            <div class="col-xl-8">
+    
+              <div class="card">
+                <div class="card-body pt-3">
+                  <!-- Bordered Tabs -->
+                  <ul class="nav nav-tabs nav-tabs-bordered">
+    
+                    <li class="nav-item">
+                      <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Edit form</button>
+                    </li>
+    
+                    <li class="nav-item">
+                      <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit"></button>
+                    </li> 
+    
+                    <li class="nav-item">
+                      <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-settings"></button>
+                    </li>
+    
+                    <li class="nav-item">
+                      <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password"></button>
+                    </li>
+    
+                  </ul>
+    
+                      <!-- Profile Edit Form -->
+                      <form class="row g-3" class="row g-3 needs-validation" method="POST" enctype="multipart/form-data" >
+                        {% csrf_token %}
+                        <div class="pt-4 pb-2">
+                            <h5 class="card-title text-center pb-0 fs-4">Informations d'identification</h5>
+                            <p class="text-center small"></p>
+                          </div>
+                          
+                        <div class="col-md-4">
+                            <label for="inputName5" class="form-label">Nom</label>
+                            <input disabled type="text" value ="{{user.last_name}}" name="name" class="inputChange form-control" id="inputName5">
+                          </div>
+                          <div class="col-md-4">
+                            <label for="inputName5" class="form-label">Prénoms</label>
+                            <input disabled type="text" value ="{{user.first_name}}" name="prenoms" class="inputChange form-control" id="inputName5">
+                          </div>
+    
+                          <div class="col-md-4">
+                            <label for="inputEmail5" class="form-label">Email</label>
+                            <input disabled type="email" value ="{{user.email}}" name="email" class="inputChange form-control" id="inputEmail5">
+                          </div>
+                          {%for info in info_persons%}
+                          <div class="col-md-4">
+                            <label for="inputNumber" class="form-label">Numéro</label>
+                            <input disabled type="number" value ="{{info.number}}" name="numero" class="inputChange form-control" id="inputNumber" placeholder="0798395774" maxlength="10" />
+                          </div>
+                          
+    
+                          <div class="col-md-4">
+                            <label for="inputDate" class="form-label">Date de naissance</label>
+                            <input disabled type="date" value ="{{info.birthday}}" placeholder="{{info.birthday}}" name="date" class="inputChange form-control" id="inputDate">
+                          </div>
+                          <div class="col-md-4">
+                            <label for="inputAddress5" class="form-label">Ville de résidence</label>
+                            <select disabled id="inputState"  name="location" class="inputChange form-select">
+                              <option selected>{{info.living_town}}</option>
+                              <option>Abidjan</option>
+                              <option>Aboisso</option>
+                              <option>Adzopé</option>
+                              <option>Agboville</option>
+                              <option>Akoupé</option>
+                              <option>Anyama</option>
+                              <option>Bingerville</option>
+                              <option>Bondoukou</option>
+                              <option>Bouaflé</option>
+                              <option>Bouaké</option>
+                              <option>Boundiali</option>
+                              <option>Dabou</option>
+                              <option>Daloa</option>
+                              <option>Daoukro</option>
+                              <option>Dimbokro</option>
+                              <option>Divo</option>
+                              <option>Ferkessédougou</option>
+                              <option>Grand-Bassam</option>
+                              <option>Guiglo</option>
+                              <option>Issia</option>
+                              <option>Katiola</option>
+                              <option>Korhogo</option>
+                              <option>Lakota</option>
+                              <option>Man</option>
+                              <option>Odienné</option>
+                              <option>San-Pédro</option>
+                              <option>Sassandra</option>
+                              <option>Séguéla</option>
+                              <option>Soubré</option>
+                              <option>Tiassalé</option>
+                              <option>Toumodi</option>
+                              <option>Yamoussoukro</option>
+                              <option>Zuénoula</option>
+                            </select>
+                          </div>
+    
+                          <div class="col-12">
+                            <label for="inputAddress2" class="form-label">Commune de résidence</label>
+                            <select disabled id="inputState" value ="{{info.commune}}"  name="commune" class="inputChange form-select">
+                              <option selected>{{info.commune}}</option>
+                              <option>Adjamé</option>
+                              <option>Anyama</option>
+                              <option>Attécoubé</option>
+                              <option>Bingerville</option>
+                              <option>Cocody</option>
+                              <option>Koumassi</option>
+                              <option>Marcory</option>
+                              <option>Plateau</option>
+                              <option>Port-Bouët</option>
+                              <option>Treichville</option>
+                              <option>Yopougon</option>
+                            </select>
+                          </div>
+                          <div class="row">
+                            <div class="col">
+                                <fieldset class="row mb-3 mt-3">
+                                    <legend class="col-form-label text-center">
+                                        Statut matrimonial
+                                    </legend>
+                                    <div class="col-sm-6">
+                                        <div class="form-check">
+                                            <input disabled class="inputChange form-check-input" type="radio" name="status" id="status1" value="Marié" checked>
+                                            <label class="inputChange form-check-label" name="Marié" for="status1">
+                                                Marié(e)
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-check">
+                                            <input disabled class="inputChange form-check-input" type="radio" name="status" id="status2" value="Célibataire" checked>
+                                            <label class="inputChange form-check-label" name="Célibataire" for="status2">
+                                                Célibataire
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-check">
+                                            <input disabled class="inputChange form-check-input" type="radio" name="status" id="status3" value="Veuf" checked>
+                                            <label class="inputChange form-check-label" name="Veuf" for="status3">
+                                                Veuf(ve)
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-check">
+                                            <input disabled class="inputChange form-check-input" type="radio" name="status" id="status4" value="Fiancé" checked>
+                                            <label class="inputChange form-check-label" name="Fiancé" for="status4">
+                                                Fiancé(e)
+                                            </label>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+
+                            <div class="col">
+                                <fieldset class="row mb-3 mt-3">
+                                    <legend class="col-form-label text-center">
+                                        Genre
+                                    </legend>
+                                    <div class="col-sm-6">
+                                        <div class="form-check">
+                                            <input disabled class="inputChange form-check-input" type="radio" name="genre" id="genre1" value="masculin" checked>
+                                            <label class="inputChange form-check-label" name="masculin" for="genre1">
+                                                Masculin
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-check">
+                                            <input disabled class="inputChange form-check-input" type="radio" name="genre" id="genre2" value="feminin" checked>
+                                            <label class="inputChange form-check-label" name="feminin" for="genre2">
+                                                Feminin
+                                            </label>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                          
+                        {% endfor%}
+                        {% for info in info_spirits%}
+                      <div class="pt-2 pb-2">
+                        <h5 class="card-title text-center small pb-0 fs-4">Informations spirituel</h5>
+                        <p class="text-center small"></p>
+                      </div>
+
+                      <div class="col-md-6">
+                        <label for="inputState" value = ""   class="form-label">Groupe de jeunesse</label>
+                        <select disabled id="inputState" name="crue" class="inputChange form-select">
+                          <option selected>{{info.young_crue}}</option>
+                          <option>Esther</option>
+                          <option>Josué</option>
+                          <option>Emmanuel</option>
+                          <option>Osée</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="inputState" value =""  class="form-label">Departement:</label>
+                        <select disabled id="inputState" name="community" class="inputChange form-select">
+                          <option selected>{{info.department}}</option>
+                          <option>Ordre et acceuil</option>
+                          <option>Commité social</option>
+                          <option>Groupe musical</option>
+                          <option>AOC</option>
+                          <option>Intercéssion</option>
+                        </select>
+                    </div>
+                    
+                    <div class="row">
+                        <div class= "col-md-6">
+                            <fieldset class="row mb-3 mt-3">
+                                <legend class="col-form-label text-center ">
+                                    baptème d'eau
+                                </legend>
+                                    <div class="col-sm-6">
+                                        <div class="form-check">
+                                            <input disabled class="inputChange form-check-input" type="radio" name="water" id="status1" value="oui" checked>
+                                            <label class="inputChange form-check-label" name="oui" for="status1">
+                                                Oui
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-check">
+                                            <input disabled class="inputChange form-check-input" type="radio" name="water" id="status2" value="non" checked>
+                                            <label class="inputChange form-check-label" name="non" for="status2">
+                                                Non
+                                            </label>
+                                        </div>
+                                    </div>
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            
+                            <fieldset class="row mb-3 mt-3">
+                                <legend class="col-form-label text-center">
+                                    baptème du saint esprit
+                                </legend>
+                                <div class="col-sm-6">
+                                    <div class="form-check">
+                                        <input disabled class="inputChange form-check-input" type="radio" name="spirit" id="status3" value="oui" checked>
+                                        <label class="inputChange form-check-label" name="oui" for="status3">
+                                            Oui
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-check">
+                                        <input disabled class="inputChange form-check-input" type="radio" name="spirit" id="status4" value="non" checked>
+                                        <label class="inputChange form-check-label" name="non" for="status4">
+                                            Non
+                                        </label>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                    {%endfor%}
+                    {%for info in info_scolaires%}
+                    <div class="pt-2 pb-2">
+                        <h5 class="card-title text-center pb-0 fs-4">Informations scolaire</h5>
+                        <p class="text-center small"></p>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="inputState"  class="form-label">Niveau d'étude</label>
+                        <select disabled id="inputState" name="level" class="inputChange form-select">
+                          <option selected>{{info.school_level}}</option>
+                            <option>cp1</option>
+                            <option>Cp2</option>
+                            <option>Ce1</option>
+                            <option>Ce1</option>
+                            <option>Cm1</option>
+                            <option>Cm2</option>
+                            <option>Sixième</option>
+                            <option>Cinquième</option>
+                            <option>Quatrième</option>
+                            <option>Troisième</option>
+                            <option>Second</option>
+                            <option>Première</option>
+                            <option>Terminal</option>
+                            <option>Licence 1</option>
+                            <option>Licence 2</option>
+                            <option>Licence 3</option>
+                            <option>Master 1</option>
+                            <option>Master 2</option>
+                            <option>Doctorat</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                      <label for="inputState"  class="form-label">Dernier Diplôme obtenu</label>
+                      <select disabled id="inputState" name="diplomes" class="inputChange form-select">
+                        <option selected>{{info.last_diplom}}</option>
+                        <option>CEPE</option>
+                        <option>BEPEC</option>
+                        <option>BACCALAUREAT</option>
+                        <option>BTS</option>
+                        <option>LICENCE 1</option>
+                        <option>LICENCE 2</option>
+                        <option>LICENCE 3</option>
+                        <option>MASTER 1</option>
+                        <option>MASTER 2</option>
+                        <option>DOCTORAT</option>
+                      </select>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="inputState"  class="form-label">Séries du BACCALAUREAT</label>
+                        <select disabled id="inputState" name="type" class="inputChange form-select">
+                          <option selected>{{info.type_bac}}</option>
+                            <option>A</option>
+                            <option>B</option>
+                            <option>C</option>
+                            <option>D</option>
+                            <option>E</option>
+                            <option>F</option>
+                            <option>G</option>
+                        </select>
+                    </div>
+
+                    <div class="col-12 mb-3">
+                      <label for="inputText" class="form-label"></label>
+                      <input disabled type="text" class="inputChange form-control"name="description" id="inputText" value ="{{info.fields}}" placeholder="EXP(Géni logiciel)">
+                    </div>
+                    {%endfor%}
+                    
+                    <div class="pt-2 pb-2">
+                        <h5 class="card-title text-center pb-0 fs-4">Informations Professionnel</h5>
+                        <p class="text-center small"></p>
+                      </div>
+                    {% for info in info_persons  %}
+                    <div class="col-md-12">
+                      <label for="inputText5" class="form-label">Dans quelle domaine êtes vous???</label>
+                      <div class="col-md-12">
+                        <select disabled id="inputState" name="domaines" class="inputChange form-select">
+                          <option selected>{{info.domaines}}</option>
+                          <option>Agriculture</option>
+                          <option>Télécommunications</option>
+                          <option>Pétrole et gaz</option>
+                          <option>Banque et finance</option>
+                          <option>Énergie</option>
+                          <option>Agriculture</option>
+                          <option>Tourisme</option>
+                          <option>Commerce</option>
+                          <option>Construction et immobilier</option>
+                          <option>Manufacturier</option>
+                          <option>Services</option>
+                          <option>Transport et logistique</option>
+                          <option>Technologie de l'information</option>
+                          <option>Éducation</option>
+                          <option>Santé</option>
+                          <option>Média et communication</option>
+                          <option>Mode et textile</option>
+                          <option>Art et culture</option>
+                          <option>Restauration</option>
+                          <option>Automobile</option>
+                          <option>Environnement</option>
+                        </select>
+                    </div>
+                    </div>
+                    {% endfor %}  
+                    {% for  info in info_professionnals %}
+                    <fieldset class="row-md-12">
+                      <legend class="col-form-label col-sm-10 pt-0">êtes vous en fonction dans ce domaines?</legend>
+                          <div class="col-sm-10">
+                              <div class="form-check">
+                                  <input disabled class="inputChange form-check-input" type="radio" name="travail" id="buzy1" value="oui" checked>
+                                  <label class="inputChange form-check-label" for="buzy1">
+                                      Oui
+                                  </label>
+                              </div>
+                          </div>
+                          <div class="col-sm-10">
+                              <div class="form-check">
+                                  <input disabled class=" inputChange form-check-input" type="radio" name="travail" id="buzy2" value="non" checked>
+                                  <label class="inputChange form-check-label" for="buzy2">
+                                      Non
+                                  </label>
+                              </div>
+                          </div>
+                      </fieldset>
+                    <div class="col-md-12">
+                      <label for="inputText5" class="form-label">Que faites vous actuellement comme metier</label>
+                      <input disabled type="text" value ="{{info.jobs}}" name="metier" class="inputChange form-control" id="inputText5" placeholder='EXP(Commerce ou encore)'>
+                    </div>
+                    <div class="col-md-12">
+                      <label for="inputTextarea" class="form-label">Description du metier que vous faites.</label>
+                      <textarea disabled class="inputChange form-control" value = "" name="description" id="inputTextarea">{{info.jobs_description}}</textarea>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col mb-3">
+                            <label for="inputPictures" class="col-sm-2 col-form-label">mon cv</label>
+                            <div class="col-sm-12">
+                              <input disabled class="inputChange form-control" value = "{{info.cv}}" name="cv" type="file" id="formFile">
+                            </div>
+                        </div>
+                        <div class="col mb-3">
+                            <label for="inputPictures" class="col-sm-4 col-form-label">Photo de profil</label>
+                            <div class="col-sm-12">
+                              <input disabled class="inputChange form-control" value = "{{info.image_de_profil}}" name="image" type="file" id="formFile">
+                        </div>
+                    </div>
+                    {% endfor %}
+                    <div class="text-center">
+                        <button type="button" id = "change" class="btn btn-primary">MODIFIER</button>
+                        <button type="Submit" class="inputChange btn btn-success" disabled>SAUVEGARDER</button>
+                    </div>
+                      </form><!-- End Profile Edit Form --> 
+    
+    
+                  </div><!-- End Bordered Tabs -->
+    
+                </div>
+              </div>
+    
+            </div>
+          </div>
+        </section>
+    
+      </main><!-- End #main -->
+    <footer>
+        <script>
+            const inputChanges = document.querySelectorAll('.inputChange');
+            const change = document.getElementById('change');
+    
+            change.addEventListener('click', function(){
+                inputChanges.forEach(input => {
+                    input.disabled = !input.disabled;
+                }) ;
+            });
+        </script>
+        {% include 'main/footer/footer.html' %}
+    </footer>
+</body>

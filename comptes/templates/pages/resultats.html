@@ -1,0 +1,68 @@
+{% load static %}
+<header>
+    {% include 'main/header/header.html' %}
+    {% include 'main/header/menu.html' %}
+</header>
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h1>Dashboard</h1>
+        <nav>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+            <li class="breadcrumb-item active">Dashboard</li>
+          </ol>
+        </nav>
+      </div><!-- End Page Title -->
+        <section class="section">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Listes des membres</h5>
+
+              <!-- Table with stripped rows -->
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Prénoms</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Numéro</th>
+                    <th scope="col">date de naissance</th>
+                    <th scope="col">Lieu d'habitation</th>
+                    <th scope="col">Commune</th>
+                    <th scope="col">Marié</th>
+                    <th scope="col">Genre</th>                        
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for user in results  %}
+                    <tr>
+                        
+                        <th scope="row"><a href="{% url 'details' membre.id %}">{{ membre.id }}</a></th>
+                        <td><a href="{% url 'details' membre.id %}"> {{membre.name}} </a></td>
+                        <td><a href="{% url 'details' membre.id %}"> {{membre.prenoms}}</a></td>
+                        <td><a href="{% url 'details' membre.id %}"> {{membre.email}}</a></td>
+                        <td><a href="{% url 'details' membre.id %}"> {{membre.numero}}</a></td>
+                        <td><a href="{% url 'details' membre.id %}"> {{membre.date}}</a></td>
+                        <td><a href="{% url 'details' membre.id %}"> {{membre.location}}</a></td>
+                        <td><a href="{% url 'details' membre.id %}"> {{membre.commune}}</a></td>
+                        <td><a href="{% url 'details' membre.id %}"> {{membre.status}}</a></td>
+                        <td><a href="{% url 'details' membre.id %}"> {{membre.genre}}</a></td>
+                        
+                    </tr> 
+                  {% endfor %}                     
+                </tbody>
+              </table>
+              <!-- End Table with stripped rows -->
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+</main>
+<footer>
+    {% include 'main/footer/footer.html' %}
+</footer>

@@ -1,0 +1,649 @@
+{% load static %}
+{% include 'main/header/header.html' %}
+<body>
+    <header>
+    {% include 'main/menu/menu_user.html' %}
+    </header>
+    <main id="main" class="main">
+
+        <div class="pagetitle">
+          <h1>Profil</h1>
+          <nav>
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="{% url 'index' %}">Acceuil</a></li>
+              <li class="breadcrumb-item active">Membres</li>
+            </ol>
+          </nav>
+        </div><!-- End Page Title -->
+    
+        <section class="section profile">
+          <div class="row">
+            <div class="col-xl-4">
+    
+              <div class="card">
+                <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+    
+                  <img src="/media/{{professionnal.image_de_profil}}" alt="Profile" class="rounded-circle">
+                  <h2>{{person.name}}</h2>
+                </div>
+              </div>
+    
+            </div>
+    
+            <div class="col-xl-8">
+    
+              <div class="card">
+                <div class="card-body pt-3">
+                  <!-- Bordered Tabs -->
+                  <ul class="nav nav-tabs nav-tabs-bordered">
+    
+                    <li class="nav-item">
+                      <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Edit form</button>
+                    </li>
+    
+                    <li class="nav-item">
+                      <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit"></button>
+                    </li> 
+    
+                    <li class="nav-item">
+                      <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-settings"></button>
+                    </li>
+    
+                    <li class="nav-item">
+                      <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password"></button>
+                    </li>
+    
+                  </ul>
+                  {% comment %} <div class="tab-content pt-2">
+    
+                    <div class="tab-pane fade show active profile-overview" id="profile-overview">
+                      <h5 class="card-title">Description</h5>
+                      <p class="small fst-italic">{{professionnal.description}}</p>
+    
+                      <h5 class="card-title">Informations du membre</h5>
+    
+                      <div class="row">
+                        <div class="col-lg-3 col-md-4 label ">Nom complet</div>
+                        <div class="col-lg-9 col-md-8">{{person.name}} {{person.prenoms}}</div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-lg-3 col-md-4 label ">Date de naissance</div>
+                        <div class="col-lg-9 col-md-8">{{person.date}}</div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-lg-3 col-md-4 label ">Situation matrimonial</div>
+                        <div class="col-lg-9 col-md-8">{{person.status}}</div>
+                      </div>
+    
+                      <div class="row">
+                        <div class="col-lg-3 col-md-4 label">Lieu d'habitation</div>
+                        <div class="col-lg-9 col-md-8">{{person.location}}, {{person.commune}}</div>
+                      </div>
+    
+                      <div class="row">
+                        <div class="col-lg-3 col-md-4 label">Numéro de téléphone</div>
+                        <div class="col-lg-9 col-md-8">{{person.numero}}</div>
+                      </div>
+    
+                      <div class="row">
+                        <div class="col-lg-3 col-md-4 label">Email</div>
+                        <div class="col-lg-9 col-md-8">{{person.email}}</div>
+                      </div>
+
+                      
+                      <div class="row">
+                        <div class="col-lg-3 col-md-4 label">Né de nouveau</div>
+                        <div class="col-lg-9 col-md-8">{{spirit.baptism_water}}</div>
+                      </div>
+    
+                      <div class="row">
+                        <div class="col-lg-3 col-md-4 label">Date du Baptème</div>
+                        <div class="col-lg-9 col-md-8">{{spirit.date}} </div>
+                      </div>
+    
+                      <div class="row">
+                        <div class="col-lg-3 col-md-4 label">Baptisé du saint esprit</div>
+                        <div class="col-lg-9 col-md-8">{{spirit.baptism_spirit}}</div>
+                      </div>
+
+                      
+                      <div class="row">
+                        <div class="col-lg-3 col-md-4 label">Département</div>
+                        <div class="col-lg-9 col-md-8">{{spirit.community}}</div>
+                      </div>
+    
+                      <div class="row">
+                        <div class="col-lg-3 col-md-4 label">Groupe de jeunesse</div>
+                        <div class="col-lg-9 col-md-8">{{spirit.jeunesse}} </div>
+                      </div>
+    
+                      <div class="row">
+                        <div class="col-lg-3 col-md-4 label">Dernier diplôme</div>
+                        <div class="col-lg-9 col-md-8">{{scolaire.diplomes}}</div>
+                      </div>
+
+                      
+                      <div class="row">
+                        <div class="col-lg-3 col-md-4 label">Filière</div>
+                        <div class="col-lg-9 col-md-8">{{scolaire.filieres}}</div>
+                      </div>
+    
+                      <div class="row">
+                        <div class="col-lg-3 col-md-4 label">Niveau d'étude</div>
+                        <div class="col-lg-9 col-md-8">{{scolaire.niveau}} </div>
+                      </div>
+    
+                      <div class="row">
+                        <div class="col-lg-3 col-md-4 label">Série du Bac</div>
+                        <div class="col-lg-9 col-md-8">{{scolaire.series}}</div>
+                      </div>
+
+                      
+                      <div class="row">
+                        <div class="col-lg-3 col-md-4 label">Domaines</div>
+                        <div class="col-lg-9 col-md-8">{{professionnal.domaine}}</div>
+                      </div>
+    
+                      <div class="row">
+                        <div class="col-lg-3 col-md-4 label">Travail</div>
+                        <div class="col-lg-9 col-md-8">{{professionnal.working}} </div>
+                      </div>
+    
+                      <div class="row">
+                        <div class="col-lg-3 col-md-4 label">Metier</div>
+                        <div class="col-lg-9 col-md-8">{{professionnal.metier}}</div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-lg-3 col-md-4 label">Cv</div>
+                        <div class="col-lg-9 col-md-8"><a href="/media/{{professionnal.cv}}" target="_blank" >CV de {{person.name}}</a></div>
+                      </div>
+
+                    </div> {% endcomment %}
+    
+                    {% comment %} <div class="tab-pane fade profile-edit pt-3" id="profile-edit"> {% endcomment %}
+    
+                      <!-- Profile Edit Form -->
+                      <form class="row g-3" class="row g-3 needs-validation" method="POST" enctype="multipart/form-data" >
+
+                        {% csrf_token %}
+
+                        <div class="pt-4 pb-2">
+                            <h5 class="card-title text-center pb-0 fs-4">Informations d'identification</h5>
+                            <p class="text-center small"></p>
+                          </div>
+
+                        {% comment %} <div class="row mb-3">
+                          <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
+                          <div class="col-md-8 col-lg-9">
+                            <img src="assets/img/profile-img.jpg" alt="Profile">
+                            <div class="pt-2">
+                              <a href="#" class="btn btn-primary btn-sm" title="Upload new profile image"><i class="bi bi-upload"></i></a>
+                              <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a>
+                            </div>
+                          </div>
+                        </div> {% endcomment %}
+    
+                        <div class="col-md-4">
+                            <label for="inputName5" class="form-label">Nom</label>
+                            <input type="text" name="name" value ="{{user.last_name}}"  class="form-control" disabled id="inputName5">
+                          </div>
+                          <div class="col-md-4">
+                            <label for="inputName5" class="form-label">Prénoms</label>
+                            <input type="text" name="prenoms" value ="{{user.first_name}}" class="form-control" disabled id="inputName5">
+                          </div>
+    
+                          <div class="col-md-4">
+                            <label for="inputEmail5" class="form-label">Email</label>
+                            <input type="email" name="email" value ="{{user.email}}" class="form-control" disabled id="inputEmail5">
+                          </div>
+                          <div class="col-md-4">
+                            <label for="inputNumber" class="form-label">Numéro</label>
+                            <input type="number" name="numero" class="form-control" id="inputNumber" placeholder="0798395774" maxlength="10" />
+                          </div>
+    
+                          <div class="col-md-4">
+                            <label for="inputDate" class="form-label">Date de naissance</label>
+                            <input type="date" name="date" class="form-control" id="inputDate">
+                          </div>
+                          <div class="col-4">
+                            <label for="inputAddress5" class="form-label">Ville de résidence</label>
+                            <select id="inputState" name="location" class="form-select">
+                              <option selected>Abengourou</option>
+                              <option>Abidjan</option>
+                              <option>Aboisso</option>
+                              <option>Adzopé</option>
+                              <option>Agboville</option>
+                              <option>Akoupé</option>
+                              <option>Anyama</option>
+                              <option>Bingerville</option>
+                              <option>Bondoukou</option>
+                              <option>Bouaflé</option>
+                              <option>Bouaké</option>
+                              <option>Boundiali</option>
+                              <option>Dabou</option>
+                              <option>Daloa</option>
+                              <option>Daoukro</option>
+                              <option>Dimbokro</option>
+                              <option>Divo</option>
+                              <option>Ferkessédougou</option>
+                              <option>Grand-Bassam</option>
+                              <option>Guiglo</option>
+                              <option>Issia</option>
+                              <option>Katiola</option>
+                              <option>Korhogo</option>
+                              <option>Lakota</option>
+                              <option>Man</option>
+                              <option>Odienné</option>
+                              <option>San-Pédro</option>
+                              <option>Sassandra</option>
+                              <option>Séguéla</option>
+                              <option>Soubré</option>
+                              <option>Tiassalé</option>
+                              <option>Toumodi</option>
+                              <option>Yamoussoukro</option>
+                              <option>Zuénoula</option>
+                            </select>
+                          </div>
+    
+                          <div class="col-12">
+                            <label for="inputAddress2" class="form-label">Commune de résidence</label>
+                            <select id="inputState" name="commune" class="form-select">
+                              <option selected>Abobo</option>
+                              <option>Adjamé</option>
+                              <option>Anyama</option>
+                              <option>Attécoubé</option>
+                              <option>Bingerville</option>
+                              <option>Cocody</option>
+                              <option>Koumassi</option>
+                              <option>Marcory</option>
+                              <option>Plateau</option>
+                              <option>Port-Bouët</option>
+                              <option>Treichville</option>
+                              <option>Yopougon</option>
+                            </select>
+                          </div>
+                          <div class="row">
+                            <div class="col">
+                                <fieldset class="row mb-3 mt-3">
+                                    <legend class="col-form-label text-center">
+                                        Statut matrimonial
+                                    </legend>
+                                    <div class="col-sm-6">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="status" id="status1" value="Marié" checked>
+                                            <label class="form-check-label" name="Marié" for="status1">
+                                                Marié(e)
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="status" id="status2" value="Célibataire" checked>
+                                            <label class="form-check-label" name="Célibataire" for="status2">
+                                                Célibataire
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="status" id="status3" value="Veuf" checked>
+                                            <label class="form-check-label" name="Veuf" for="status3">
+                                                Veuf(ve)
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="status" id="status4" value="Fiancé" checked>
+                                            <label class="form-check-label" name="Fiancé" for="status4">
+                                                Fiancé(e)
+                                            </label>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+
+                            <div class="col">
+                                <fieldset class="row mb-3 mt-3">
+                                    <legend class="col-form-label text-center">
+                                        Genre
+                                    </legend>
+                                    <div class="col-sm-6">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="genre" id="genre1" value="masculin" checked>
+                                            <label class="form-check-label" name="masculin" for="genre1">
+                                                Masculin
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="genre" id="genre2" value="feminin" checked>
+                                            <label class="form-check-label" name="feminin" for="genre2">
+                                                Feminin
+                                            </label>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                          
+                            
+
+                      <div class="pt-2 pb-2">
+                        <h5 class="card-title text-center small pb-0 fs-4">Informations spirituel</h5>
+                        <p class="text-center small"></p>
+                      </div>
+
+                      <div class="col-md-6">
+                        <label for="inputState"  class="form-label">Groupe de jeunesse</label>
+                        <select id="inputState" name="crue" class="form-select">
+                          <option selected>Aucun</option>
+                          <option>Esther</option>
+                          <option>Josué</option>
+                          <option>Emmanuel</option>
+                          <option>Osée</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="inputState"  class="form-label">Departement:</label>
+                        <select id="inputState" name="community" class="form-select">
+                          <option selected>Aucun</option>
+                          <option>Ordre et acceuil</option>
+                          <option>Commité social</option>
+                          <option>Groupe musical</option>
+                          <option>AOC</option>
+                          <option>Intercéssion</option>
+                        </select>
+                    </div>
+                    
+                    <div class="row">
+                        <div class= "col-md-6">
+                            <fieldset class="row mb-3 mt-3">
+                                <legend class="col-form-label text-center ">
+                                    baptème d'eau
+                                </legend>
+                                    <div class="col-sm-6">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="water" id="status1" value="oui" checked>
+                                            <label class="form-check-label" name="oui" for="status1">
+                                                Oui
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="water" id="status2" value="non" checked>
+                                            <label class="form-check-label" name="non" for="status2">
+                                                Non
+                                            </label>
+                                        </div>
+                                    </div>
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            
+                            <fieldset class="row mb-3 mt-3">
+                                <legend class="col-form-label text-center">
+                                    baptème du saint esprit
+                                </legend>
+                                <div class="col-sm-6">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="spirit" id="status3" value="oui" checked>
+                                        <label class="form-check-label" name="oui" for="status3">
+                                            Oui
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="spirit" id="status4" value="non" checked>
+                                        <label class="form-check-label" name="non" for="status4">
+                                            Non
+                                        </label>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+
+                    <div class="pt-2 pb-2">
+                        <h5 class="card-title text-center pb-0 fs-4">Informations scolaire</h5>
+                        <p class="text-center small"></p>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="inputState"  class="form-label">Niveau d'étude</label>
+                        <select id="inputState" name="level" class="form-select">
+                          <option selected>Je continue les cours</option>
+                            <option>cp1</option>
+                            <option>Cp2</option>
+                            <option>Ce1</option>
+                            <option>Ce1</option>
+                            <option>Cm1</option>
+                            <option>Cm2</option>
+                            <option>Sixième</option>
+                            <option>Cinquième</option>
+                            <option>Quatrième</option>
+                            <option>Troisième</option>
+                            <option>Second</option>
+                            <option>Première</option>
+                            <option>Terminal</option>
+                            <option>Licence 1</option>
+                            <option>Licence 2</option>
+                            <option>Licence 3</option>
+                            <option>Master 1</option>
+                            <option>Master 2</option>
+                            <option>Doctorat</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                      <label for="inputState"  class="form-label">Dernier Diplôme obtenu</label>
+                      <select id="inputState" name="diplomes" class="form-select">
+                        <option selected>Aucun</option>
+                        <option>CEPE</option>
+                        <option>BEPEC</option>
+                        <option>BACCALAUREAT</option>
+                        <option>BTS</option>
+                        <option>LICENCE 1</option>
+                        <option>LICENCE 2</option>
+                        <option>LICENCE 3</option>
+                        <option>MASTER 1</option>
+                        <option>MASTER 2</option>
+                        <option>DOCTORAT</option>
+                      </select>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="inputState"  class="form-label">Séries du BACCALAUREAT</label>
+                        <select id="inputState" name="type" class="form-select">
+                          <option selected>Aucun</option>
+                            <option>A</option>
+                            <option>B</option>
+                            <option>C</option>
+                            <option>D</option>
+                            <option>E</option>
+                            <option>F</option>
+                            <option>G</option>
+                        </select>
+                    </div>
+
+                    <div class="col-12 mb-3">
+                      <label for="inputText" class="form-label">Filière</label>
+                      <input type="text" class="form-control"name="description" id="inputText" placeholder="EXP(Géni logiciel)">
+                    </div>
+                    
+                    <div class="pt-2 pb-2">
+                        <h5 class="card-title text-center pb-0 fs-4">Informations Professionnel</h5>
+                        <p class="text-center small"></p>
+                      </div>
+
+                    <div class="col-md-12">
+                      <label for="inputText5" class="form-label">Dans quelle domaine êtes vous???</label>
+                      <div class="col-md-12">
+                        <select id="inputState" name="domaines" class="form-select">
+                          <option selected>Autres Domaines</option>
+                          <option>Agriculture</option>
+                          <option>Télécommunications</option>
+                          <option>Pétrole et gaz</option>
+                          <option>Banque et finance</option>
+                          <option>Énergie</option>
+                          <option>Agriculture</option>
+                          <option>Tourisme</option>
+                          <option>Commerce</option>
+                          <option>Construction et immobilier</option>
+                          <option>Manufacturier</option>
+                          <option>Services</option>
+                          <option>Transport et logistique</option>
+                          <option>Technologie de l'information</option>
+                          <option>Éducation</option>
+                          <option>Santé</option>
+                          <option>Média et communication</option>
+                          <option>Mode et textile</option>
+                          <option>Art et culture</option>
+                          <option>Restauration</option>
+                          <option>Automobile</option>
+                          <option>Environnement</option>
+                        </select>
+                    </div>
+                    </div>
+                    <fieldset class="row-md-12">
+                      <legend class="col-form-label col-sm-10 pt-0">êtes vous en fonction dans ce domaines?</legend>
+                          <div class="col-sm-10">
+                              <div class="form-check">
+                                  <input class="form-check-input" type="radio" name="travail" id="buzy1" value="oui" checked>
+                                  <label class="form-check-label" for="buzy1">
+                                      Oui
+                                  </label>
+                              </div>
+                          </div>
+                          <div class="col-sm-10">
+                              <div class="form-check">
+                                  <input class="form-check-input" type="radio" name="travail" id="buzy2" value="non" checked>
+                                  <label class="form-check-label" for="buzy2">
+                                      Non
+                                  </label>
+                              </div>
+                          </div>
+                      </fieldset>
+                    <div class="col-md-12">
+                      <label for="inputText5" class="form-label">Que faites vous actuellement comme metier</label>
+                      <input type="text" name="metier" class="form-control" id="inputText5" placeholder='EXP(Commerce ou encore)'>
+                    </div>
+                    <div class="col-md-12">
+                      <label for="inputTextarea" class="form-label">Description du metier que vous faites.</label>
+                      <textarea class="form-control" name="description" id="inputTextarea"></textarea>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col mb-3">
+                            <label for="inputPictures" class="col-sm-2 col-form-label">mon cv</label>
+                            <div class="col-sm-12">
+                              <input class="form-control" name="cv" type="file" id="formFile">
+                            </div>
+                        </div>
+                        <div class="col mb-3">
+                            <label for="inputPictures" class="col-sm-2 col-form-label">image</label>
+                            <div class="col-sm-12">
+                              <input class="form-control" name="image" type="file" id="formFile">
+                        </div>
+                    </div>
+
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-success">Save Changes</button>
+                    </div>
+                      </form><!-- End Profile Edit Form --> 
+    
+                    
+
+                    {% comment %} <div class="tab-pane fade pt-3" id="profile-settings"> {% endcomment %}
+    
+                      <!-- Settings Form -->
+                      {% comment %} <form>
+    
+                        <div class="row mb-3">
+                          <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Email Notifications</label>
+                          <div class="col-md-8 col-lg-9">
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" id="changesMade" checked>
+                              <label class="form-check-label" for="changesMade">
+                                Changes made to your account
+                              </label>
+                            </div>
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" id="newProducts" checked>
+                              <label class="form-check-label" for="newProducts">
+                                Information on new products and services
+                              </label>
+                            </div>
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" id="proOffers">
+                              <label class="form-check-label" for="proOffers">
+                                Marketing and promo offers
+                              </label>
+                            </div>
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" id="securityNotify" checked disabled>
+                              <label class="form-check-label" for="securityNotify">
+                                Security alerts
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+    
+                        <div class="text-center">
+                          <button type="submit" class="btn btn-primary">Save Changes</button>
+                        </div>
+                      </form><!-- End settings Form --> {% endcomment %}
+    
+                    {% comment %} </div>
+    
+                    <div class="tab-pane fade pt-3" id="profile-change-password"> {% endcomment %}
+                      <!-- Change Password Form -->
+                      {% comment %} <form>
+    
+                        <div class="row mb-3">
+                          <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Current Password</label>
+                          <div class="col-md-8 col-lg-9">
+                            <input name="password" type="password" class="form-control" id="currentPassword">
+                          </div>
+                        </div>
+    
+                        <div class="row mb-3">
+                          <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">New Password</label>
+                          <div class="col-md-8 col-lg-9">
+                            <input name="newpassword" type="password" class="form-control" id="newPassword">
+                          </div>
+                        </div>
+    
+                        <div class="row mb-3">
+                          <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Re-enter New Password</label>
+                          <div class="col-md-8 col-lg-9">
+                            <input name="renewpassword" type="password" class="form-control" id="renewPassword">
+                          </div>
+                        </div>
+    
+                        <div class="text-center">
+                          <button type="submit" class="btn btn-primary">Change Password</button>
+                        </div>
+                      </form><!-- End Change Password Form --> {% endcomment %}
+    
+                    {% comment %} </div> {% endcomment %}
+    
+                  </div><!-- End Bordered Tabs -->
+    
+                </div>
+              </div>
+    
+            </div>
+          </div>
+        </section>
+    
+      </main><!-- End #main -->
+    <footer>
+        {% include 'main/footer/footer.html' %}
+    </footer>
+</body>

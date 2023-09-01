@@ -1,0 +1,199 @@
+{% load static %}
+<header>
+    {% include 'main/header.html' %}
+</header>
+<main>
+    <div class="container">
+
+      <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+
+              <div class="d-flex justify-content-center py-4">
+                <a href="index.html" class="logo d-flex align-items-center w-auto">
+                  <img src="{% static 'assets/img/logo.png'%}" alt="">
+                  <span class="d-none d-lg-block">DB ANNEXE</span>
+                </a>
+              </div><!-- End Logo -->
+
+              <div class="card mb-3">
+
+                <div class="card-body">
+
+                  <div class="pt-4 pb-2">
+                    <h5 class="card-title text-center pb-0 fs-4">Informations d'identification</h5>
+                    <p class="text-center small">Veiller remplire correctement chaque champs du formulaire</p>
+                  </div>
+                  
+                  {% comment %} <form method="POST" class="row g-3 needs-validation" novalidate> {% endcomment %}
+                    
+                    <form class="row g-3" class="row g-3 needs-validation" method="POST">
+                      {% csrf_token %}
+                      <div class="col-md-6">
+                        <label for="inputName5" class="form-label">Nom</label>
+                        <input type="text" name="name" class="form-control" id="inputName5">
+                      </div>
+                      <div class="col-md-6">
+                        <label for="inputName5" class="form-label">Prénoms</label>
+                        <input type="text" name="prenoms" class="form-control" id="inputName5">
+                      </div>
+                      <div class="col-md-6">
+                        <label for="inputEmail5" class="form-label">Email</label>
+                        <input type="email" name="email" class="form-control" id="inputEmail5">
+                      </div>
+                      <div class="col-md-6">
+                        <label for="inputNumber" class="form-label">Numéro</label>
+                        <input type="number" name="numero" class="form-control" id="inputNumber" placeholder="0798395774" maxlength="10" />
+                      </div>
+                      <div class="col-md-12">
+                        <label for="inputDate" class="form-label">Date de naissance</label>
+                        <input type="date" name="date" class="form-control" id="inputDate">
+                      </div>
+                      <div class="col-12">
+                        <label for="inputAddress5" class="form-label">Ville de résidence</label>
+                        <select id="inputState" name="location" class="form-select">
+                          <option selected>Abengourou</option>
+                          <option>Abidjan</option>
+                          <option>Aboisso</option>
+                          <option>Adzopé</option>
+                          <option>Agboville</option>
+                          <option>Akoupé</option>
+                          <option>Anyama</option>
+                          <option>Bingerville</option>
+                          <option>Bondoukou</option>
+                          <option>Bouaflé</option>
+                          <option>Bouaké</option>
+                          <option>Boundiali</option>
+                          <option>Dabou</option>
+                          <option>Daloa</option>
+                          <option>Daoukro</option>
+                          <option>Dimbokro</option>
+                          <option>Divo</option>
+                          <option>Ferkessédougou</option>
+                          <option>Grand-Bassam</option>
+                          <option>Guiglo</option>
+                          <option>Issia</option>
+                          <option>Katiola</option>
+                          <option>Korhogo</option>
+                          <option>Lakota</option>
+                          <option>Man</option>
+                          <option>Odienné</option>
+                          <option>San-Pédro</option>
+                          <option>Sassandra</option>
+                          <option>Séguéla</option>
+                          <option>Soubré</option>
+                          <option>Tiassalé</option>
+                          <option>Toumodi</option>
+                          <option>Yamoussoukro</option>
+                          <option>Zuénoula</option>
+                        </select>
+                      </div>
+                      <div class="col-12">
+                        <label for="inputAddress2" class="form-label">Commune de résidence</label>
+                        <select id="inputState" name="commune" class="form-select">
+                          <option selected>Abobo</option>
+                          <option>Adjamé</option>
+                          <option>Anyama</option>
+                          <option>Attécoubé</option>
+                          <option>Bingerville</option>
+                          <option>Cocody</option>
+                          <option>Koumassi</option>
+                          <option>Marcory</option>
+                          <option>Plateau</option>
+                          <option>Port-Bouët</option>
+                          <option>Treichville</option>
+                          <option>Yopougon</option>
+                        </select>
+                      </div>
+                      <fieldset class="row mb-3 mt-3">
+                        <legend class="col-form-label col-sm-10 pt-0">Statut matrimonial</legend>
+                            <div class="col-sm-10">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="status" id="status1" value="Marié" checked>
+                                    <label class="form-check-label" name="Marié" for="status1">
+                                        Marié(e)
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-sm-10">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="status" id="status2" value="Célibataire" checked>
+                                    <label class="form-check-label" name="Célibataire" for="status2">
+                                        Célibataire
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-sm-10">
+                              <div class="form-check">
+                                  <input class="form-check-input" type="radio" name="status" id="status3" value="Veuf" checked>
+                                  <label class="form-check-label" name="Veuf" for="status3">
+                                      Veuf(ve)
+                                  </label>
+                              </div>
+                            </div>
+                            <div class="col-sm-10">
+                              <div class="form-check">
+                                  <input class="form-check-input" type="radio" name="status" id="status4" value="Fiancé" checked>
+                                  <label class="form-check-label" name="Fiancé" for="status4">
+                                      Fiancé(e)
+                                  </label>
+                              </div>
+                            </div>
+                        </fieldset>
+                        <fieldset class="row mb-3">
+                          <legend class="col-form-label col-sm-10 pt-0">Genre</legend>
+                              <div class="col-sm-10">
+                                  <div class="form-check">
+                                      <input class="form-check-input" type="radio" name="genre" id="genre1" value="masculin" checked>
+                                      <label class="form-check-label" name="masculin" for="genre1">
+                                          Masculin
+                                      </label>
+                                  </div>
+                              </div>
+                              <div class="col-sm-10">
+                                  <div class="form-check">
+                                      <input class="form-check-input" type="radio" name="genre" id="genre2" value="feminin" checked>
+                                      <label class="form-check-label" name="feminin" for="genre2">
+                                          Feminin
+                                      </label>
+                                  </div>
+                              </div>
+                      </fieldset>
+                      <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Suivant</button>
+                        {% comment %} <button type="reset" class="btn btn-secondary">Reset</button> {% endcomment %}
+                      </div>
+                      {% comment %} <a href="{% url 'form2' %}">accéder au formulaire 2</a> {% endcomment %}
+                    </form>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+    </div>
+  </main><!-- End #main -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var inputElement = document.getElementById('inputNumber');
+  
+      inputElement.addEventListener('input', function() {
+        var inputValue = inputElement.value;
+        var numericValue = inputValue.replace(/\D/g, ''); // Supprime tous les caractères non numériques
+  
+        if (numericValue.length > 10) {
+          numericValue = numericValue.slice(0, 10); // Limite le nombre de chiffres à 10
+        }
+  
+        inputElement.value = numericValue;
+      });
+    });
+  </script>
+
+{% comment %} <footer>
+   {% include 'main/footer.html' %}
+</footer> {% endcomment %}

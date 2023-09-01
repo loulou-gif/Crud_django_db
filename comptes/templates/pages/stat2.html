@@ -1,0 +1,115 @@
+{% load static %}
+<header>
+    {% include 'main/header/header.html' %}
+</header>
+<body>
+    
+    <main id="main" class="main">
+    <div class="pagetitle">
+        <h1>Chart.js</h1>
+        <nav>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Acceuil</a></li>
+            
+            <li class="breadcrumb-item active">statistiques</li>
+          </ol>
+        </nav>
+    </div><!-- End Page Title -->
+  
+      <p>Toutes les statistiques concernant l'Eglise .</p>
+  
+      <section class="section">
+        <div class="row">
+  
+          
+  
+          <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body"  style="height: 404px;">
+                <h5 class="card-title">Nombre de jeunes baptisé du saint esprit</h5>
+  
+                <!-- Pie Chart -->
+                
+  
+                <canvas id="pieChart" style="max-height: {{ pourcent_baptised }}%;"height="646"width="1941"></canvas>
+                <script>
+                    document.addEventListener("DOMContentLoaded", () => {
+                        new Chart(document.querySelector('#pieChart'), {
+                            type: 'pie',
+                            data: {
+                                labels: ['Baptisé ', 'pas baptisé'],
+                                datasets: [{
+                                    label: 'Répartition des baptisé et non baptisé par genre',
+                                    data: [{{ pourcent_baptised | floatformat:2 }}, {{ pourcent_not_baptised | floatformat:2 }}],
+                                    backgroundColor: ['rgb(75, 192, 192)', 'rgb(192, 75, 75)'],
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+                                scales: {
+                                    y: {
+                                        beginAtZero: true,
+                                        max: 100
+                                    }
+                                }
+                            }
+                        });
+                    });
+                </script>
+                
+                <p>Avec {{ number_baptised }} baptisé sur un total de {{ total }} jeunes dans l'église</p>  
+              </div>
+              
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body"  style="height: 404px;">
+                <h5 class="card-title">Nombre de jeunes baptisé d'eau</h5>
+  
+                <!-- Pie Chart -->
+                
+  
+                <canvas id="doughnutChart" style="max-height: {{ pourcent_born_again }}%;"height="646"width="1941"></canvas>
+                <script>
+                    document.addEventListener("DOMContentLoaded", () => {
+                        new Chart(document.querySelector('#doughnutChart'), {
+                            type: 'doughnut',
+                            data: {
+                                labels: ['né(e) de nouveau ', 'pas né(e) de nouveau'],
+                                datasets: [{
+                                    label: 'Répartition des baptisé et non baptisé par genre',
+                                    data: [{{ pourcent_born_again | floatformat:2 }}, {{ pourcent_not_born_again | floatformat:2 }}],
+                                    backgroundColor: ['rgb(250, 324, 71)', 'rgb(53, 75, 75)'],
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+                                scales: {
+                                    y: {
+                                        beginAtZero: true,
+                                        max: 100
+                                    }
+                                }
+                            }
+                        });
+                    });
+                </script>
+                
+                <p>Avec {{ number_born_again }} baptisé d'eau sur un total de {{ total }} jeunes dans l'église</p>  
+              </div>
+              
+            </div>
+          </div>          
+        </div>
+    
+      </section>
+  
+    </main>
+  
+    {% include 'main/menu/menu.html' %}
+    <footer>
+        {% include 'main/footer/footer.html' %}
+    </footer>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<header>
+    {% include 'main/header/header.html' %}
+    {% include 'main/menu/menu.html' %}
+    
+</header>
+<main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Chart.js</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Acceuil</a></li>
+          
+          <li class="breadcrumb-item active">statistiques</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <p>Toutes les statistiques concernant l'Eglise .</p>
+
+    <section class="section">
+      <div class="row">
+
+        
+
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-body" style="height: 404px;">
+              <h5 class="card-title">Nombre d'hommes et de femmes dans l'église</h5>
+
+              <!-- Pie Chart -->
+              
+
+              <canvas id="pieChart" style="max-height: {{ pour_hommes }}%;" height="646"width="1941"></canvas>
+              <script>
+                  document.addEventListener("DOMContentLoaded", () => {
+                      new Chart(document.querySelector('#pieChart'), {
+                          type: 'pie',
+                          data: {
+                              labels: ['hommes', 'femmes'],
+                              datasets: [{
+                                  label: 'Répartition Hommes/Femmes',
+                                  data: [{{ pour_hommes | floatformat:2 }}, {{ pour_femmes | floatformat:2 }}],
+                                  backgroundColor: ['rgb(75, 192, 192)', 'rgb(192, 75, 75)'],
+                                  borderWidth: 1
+                              }]
+                          },
+                          options: {
+                              scales: {
+                                  y: {
+                                      beginAtZero: true,
+                                      max: 100
+                                  }
+                              }
+                          }
+                      });
+                  });
+              </script>
+              
+              <p>Avec {{ Nbrehommes }} hommes et {{ Nbrefemmes }} femmes</p>  
+            </div>
+            
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-body" style="height: 404px;">
+              <h5 class="card-title">Nombres de jeunes en emploie dans l'église</h5>
+
+              <!-- Pour les employées -->
+              <canvas id="doughnutChart" style="max-height: {{ pour_employer }}%;" height="646"width="1941"></canvas>
+              <script>
+                  document.addEventListener("DOMContentLoaded", () => {
+                      new Chart(document.querySelector('#doughnutChart'), {
+                          type: 'doughnut',
+                          data: {
+                              labels: ['employer', 'chomeur'],
+                              datasets: [{
+                                  label: 'Répartition employer/sans emploie',
+                                  data: [{{ pour_employer | floatformat:2 }}, {{ pour_chomeur | floatformat:2 }}],
+                                  backgroundColor: ['rgb(50, 134, 235)', 'rgb(110, 234, 194)'],
+                                  borderWidth: 1
+                              }]
+                          },
+                          options: {
+                              scales: {
+                                  y: {
+                                      beginAtZero: true,
+                                      max: 100
+                                  }
+                              }
+                          }
+                      });
+                  });
+              </script>
+
+              <!-- End Doughnut CHart -->
+              <p>Avec {{Nbremployer}} jeunes qui travail et {{Nbrechomeur}} jeunes sans emploie </p>
+            </div>
+            
+          </div>
+        </div>
+
+        
+      </div>
+    </section>
+
+  </main>
+<footer>
+    {% include 'main/footer/footer.html' %}
+</footer>
