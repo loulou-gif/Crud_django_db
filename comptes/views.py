@@ -8,7 +8,7 @@ from django.db.models import Q
 from .forms import registreForm
 from django.contrib.auth.models import User
 from .models import Person, spirit, scolaire, professionnal
-from .decorators import only_admin, match, new, genre
+from .decorators import only_admin, match, genre
 
 # Create your views here.
 
@@ -121,7 +121,7 @@ def other_user(request):
     }
     
     return render(request, 'pages/other_user.html', context)
-@genre
+# @genre
 @only_admin
 def update_info(request, id):
         
@@ -198,7 +198,7 @@ def update_info(request, id):
 @only_admin
 # w
 def detail(request):
-    user = request.user
+    # user = request.user
     info_persons = Person.objects.filter(user=request.user)
     info_spirits = spirit.objects.filter(user=request.user)
     info_scolaires = scolaire.objects.filter(user=request.user)
@@ -208,7 +208,7 @@ def detail(request):
         'info_spirits': info_spirits,
         'info_scolaires': info_scolaires,
         'info_professionnals': info_professionnals,
-        'user': user
+        # 'user': user
     }
     return render(request, 'pages/detail.html',context)
 
