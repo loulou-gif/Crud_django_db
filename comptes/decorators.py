@@ -15,7 +15,11 @@ def only_admin(view_func):
 def match(view_func):
     @wraps(view_func)
     def _wrapped_view(request, *args, **kwargs):
-        if request.user.is_authenticated and not request.user.is_superuser:
+        if request.user.is_authenticated and not request.user.is_superuser and request.user.last_login is None:
+            
+            return redirect('detail')
+        
+        elif request.user.is_authenticated and not request.user.is_superuser :
             
             return redirect('home')
         else:

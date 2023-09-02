@@ -8,7 +8,8 @@ from django.db.models import Q
 from .forms import registreForm
 from django.contrib.auth.models import User
 from .models import Person, spirit, scolaire, professionnal
-from .decorators import only_admin, match, genre
+from .decorators import only_admin, match, genre, new
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -67,7 +68,7 @@ def deconnexion(request):
 
 
 # page de connexion
-# 
+
 @match
 def index(request):
     if not request.user.is_authenticated:
@@ -78,8 +79,9 @@ def index(request):
         'membres': membres,
     }
     return render(request, 'pages/index.html', context)
-# @new
+@new
 @only_admin
+@login_required
 def other_user(request):
     user = request.user    
     if request.method == "POST":
@@ -121,7 +123,7 @@ def other_user(request):
     }
     
     return render(request, 'pages/other_user.html', context)
-# @genre
+# @new
 @only_admin
 def update_info(request, id):
         
@@ -195,8 +197,9 @@ def update_info(request, id):
         'info_professionnal': info_professionnal
     }
     return render(request, 'pages/update.html',context)
-@only_admin
-# w
+# @only_admin
+@new
+@login_required
 def detail(request):
     # user = request.user
     info_persons = Person.objects.filter(user=request.user)
@@ -211,7 +214,7 @@ def detail(request):
         # 'user': user
     }
     return render(request, 'pages/detail.html',context)
-
+@login_required
 def details(request, user_id):
     if not request.user.is_authenticated:
         return redirect('connexion')
