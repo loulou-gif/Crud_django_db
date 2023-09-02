@@ -30,7 +30,7 @@ def connexion(request):
             if request.user.last_login is not None:
                 return redirect('home')
             else:
-                return redirect('update', id=request.user.id)
+                return redirect('detail')
         else:
             messages.info(request, "Mots de passe ou Username incorrecte")
         
@@ -59,7 +59,7 @@ def registre(request):
 
 
 # déconnexion d'un compte
-
+@login_required
 def deconnexion(request):
     if not request.user.is_authenticated:
         return redirect('connexion')
@@ -70,6 +70,7 @@ def deconnexion(request):
 # page de connexion
 
 @match
+@login_required
 def index(request):
     if not request.user.is_authenticated:
         return redirect('connexion')
@@ -105,6 +106,10 @@ def other_user(request):
         description = request.POST.get('description')
         cv = request.FILES.get("cv")
         image = request.FILES.get('image')
+        is_staff = True
+        user_id = User.objects.get(id=request.user.id)
+        user_id.is_staff = is_staff
+        user_id.save()
         
         person = Person(user=request.user,number=numero, birthday=date, living_town=location, commune=commune, status=status, domaines=domaines, genre=genre)
         spirituel = spirit(user=request.user, water_baptem=baptism_water, spirit_baptem=baptism_spirit, young_crue=community, department=jeunesse)
@@ -125,6 +130,7 @@ def other_user(request):
     return render(request, 'pages/other_user.html', context)
 # @new
 @only_admin
+@login_required
 def update_info(request, id):
         
     info_persons = Person.objects.filter(user=request.user)
@@ -186,6 +192,8 @@ def update_info(request, id):
         info_scolaire.save()
         info_spirit.save()
         
+        return redirect('detail')
+    
     context = {
         'info_persons': info_persons,
         'info_spirits': info_spirits,
@@ -198,7 +206,7 @@ def update_info(request, id):
     }
     return render(request, 'pages/update.html',context)
 # @only_admin
-@new
+# @new
 @login_required
 def detail(request):
     # user = request.user
@@ -228,30 +236,30 @@ def details(request, user_id):
 
 # page profil et de modification de mail ou de nom
 
-def profil(request):
-    if not request.user.is_authenticated:
-        return redirect('connexion')
+# def profil(request):
+#     if not request.user.is_authenticated:
+#         return redirect('connexion')
     
-    # obj = get_object_or_404(User, pk=pk)
-    # if request.method == 'POST':
-    #     nom = request.POST.get("Nom")
-    #     prenoms = request.POST.get("Prenoms")
-    #     description = request.POST.get("Description")
-    #     email = request.POST.get("email")
+#     # obj = get_object_or_404(User, pk=pk)
+#     # if request.method == 'POST':
+#     #     nom = request.POST.get("Nom")
+#     #     prenoms = request.POST.get("Prenoms")
+#     #     description = request.POST.get("Description")
+#     #     email = request.POST.get("email")
         
-    #     obj.last_name = nom
-    #     obj.first_name = prenoms
-    #     obj.email = email
+#     #     obj.last_name = nom
+#     #     obj.first_name = prenoms
+#     #     obj.email = email
         
     
-    user = request.user
-    context = {
-        'user': user,
-        # 'obj': obj
-    }
+#     user = request.user
+#     context = {
+#         'user': user,
+#         # 'obj': obj
+#     }
     
         
-    return render(request, 'pages/profil.html', context)
+#     return render(request, 'pages/profil.html', context)
 
 
 

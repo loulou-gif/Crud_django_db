@@ -10,7 +10,7 @@
           <h1>Profil</h1>
           <nav>
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="{% url 'index' %}">Acceuil</a></li>
+              <li class="breadcrumb-item"><a href="{% url 'detail' %}">Acceuil</a></li>
               <li class="breadcrumb-item active">Membres</li>
             </ol>
           </nav>
@@ -96,7 +96,7 @@
     
                           <div class="col-md-4">
                             <label for="inputDate" class="form-label">Date de naissance</label>
-                            <input type="date" name="date" class="form-control" id="inputDate">
+                            <input type="date" name="date" class="form-control" id="inputDate" required />
                           </div>
                           <div class="col-4">
                             <label for="inputAddress5" class="form-label">Ville de résidence</label>
@@ -440,6 +440,13 @@
                             <div class="col-sm-12">
                               <input class="form-control" name="image" type="file" id="formFile">
                         </div>
+                        {% comment %} <div class="col-12">
+                          <div class="form-check">
+                            <input class="form-check-input" name="True" type="checkbox" value="on" id="acceptTerms" required>
+                            <label class="form-check-label" for="acceptTerms">J'accepte que ces données soit visible uniquement par les responsables et le pasteur</label>
+                            <div class="invalid-feedback">You must agree before submitting.</div>
+                          </div>
+                        </div> {% endcomment %}
                     </div>
 
                     <div class="text-center">
