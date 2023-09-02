@@ -18,8 +18,8 @@
             <div class="row justify-content-center">
               <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
   
-                <div class="d-flex justify-content-center py-4">
-                  <a href="{% url 'index' %}" class="logo d-flex align-items-center w-auto">
+                <div class="d-flex justify-content-center mt-0 pt-0 py-4">
+                  <a href="#" class="logo d-flex align-items-center w-auto">
                     <img src="{% static 'assets/img/logo.png'%}" alt="">
                     <span class="d-none d-lg-block">DB annexe</span>
                   </a>
@@ -40,38 +40,38 @@
                     <form class="row g-3 needs-validation" novalidate method="POST">
                       {% csrf_token %}
                         <div class="col-md-12">
-                          <label for="inputName5"  class="form-label">Nom d'utilisateur</label>
+                          {% comment %} <label for="inputName5"  class="form-label">Nom d'utilisateur</label> {% endcomment %}
                             <div class="input">
                                 {{form.username}}
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <label for="inputName5"  class="form-label">Nom</label>
+                            {% comment %} <label for="inputName5"  class="form-label">Nom</label> {% endcomment %}
                             <div class="input">
                              {{form.last_name}}
                             </div>
                         </div>
                         <div class="col-md-12">
-                          <label for="inputName5"  class="form-label">Prenoms</label>
+                          {% comment %} <label for="inputName5"  class="form-label">Prenoms</label> {% endcomment %}
                             <div class="input">
                                 {{form.first_name}}
                             </div>
                         </div>
                         <div class="col-md-12">
-                          <label for="inputName5"  class="form-label">Mail</label>
+                          {% comment %} <label for="inputName5"  class="form-label">Mail</label> {% endcomment %}
                             <div class="input">
                              {{form.email}}
                             </div>
                         </div>
                         <div class="col-md-12">
-                          <label for="inputName5"  class="form-label">Mot de passe</label>
+                          {% comment %} <label for="inputName5"  class="form-label">Mot de passe</label> {% endcomment %}
                             <div class="input">
                              {{form.password1}}
                             </div>
                         </div>
                        
                         <div class="col-md-12">
-                          <label for="inputPassword5" class="form-label">Confirmer votre mot de passe</label>
+                          {% comment %} <label for="inputPassword5" class="form-label">Confirmer votre mot de passe</label> {% endcomment %}
                           <div class="input">
                             {{form.password2}}
                           </div>
@@ -80,7 +80,7 @@
                           <button type="submit" class="btn btn-primary">S'enregistrer</button>
                         </div>
                         <div class="col-md-12 text-center">
-                          J'ai un compte<a href="{% url 'connexion' %}">Connexion👍</a>
+                          J'ai un compte?<a href="{% url 'connexion' %}"> Connectez-vous👍!</a>
                         </div>
                         </form>
                     </form>

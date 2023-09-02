@@ -15,6 +15,9 @@ from django.contrib.auth.decorators import login_required
 
 # formulaire de connexion
 
+list_cv = ['pdf','docs']
+list_image = ['png','jpg','jpeg']
+
 def connexion(request):
     request.user
     if request.user.is_authenticated:
@@ -46,7 +49,7 @@ def registre(request):
             form.save()
             return redirect('connexion')
         else:
-            messages.info(request, "Mots de passe ou Username incorrecte")
+            messages.info(request, "Veillez remplire correctement les champs")
     
     form = registreForm()
     context = {
@@ -107,21 +110,26 @@ def other_user(request):
         cv = request.FILES.get("cv")
         image = request.FILES.get('image')
         is_staff = True
-        user_id = User.objects.get(id=request.user.id)
-        user_id.is_staff = is_staff
-        user_id.save()
         
-        person = Person(user=request.user,number=numero, birthday=date, living_town=location, commune=commune, status=status, domaines=domaines, genre=genre)
-        spirituel = spirit(user=request.user, water_baptem=baptism_water, spirit_baptem=baptism_spirit, young_crue=community, department=jeunesse)
-        school = scolaire(user=request.user, school_level=niveau, last_diplom=diplomes, type_bac=series, fields=filieres)
-        pro = professionnal(user=request.user, working=travail, jobs=metier, jobs_description=description, cv=cv , image_de_profil=image)
+        if cv and image:
+            extension_cv = cv.name.split('.')[-1].lower()
+            extension_image = image.name.split('.')[-1].lower()
+            if extension_cv in list_cv and extension_image:
+                user_id = User.objects.get(id=request.user.id)
+                user_id.is_staff = is_staff
+                person = Person(user=request.user,number=numero, birthday=date, living_town=location, commune=commune, status=status, domaines=domaines, genre=genre)
+                spirituel = spirit(user=request.user, water_baptem=baptism_water, spirit_baptem=baptism_spirit, young_crue=community, department=jeunesse)
+                school = scolaire(user=request.user, school_level=niveau, last_diplom=diplomes, type_bac=series, fields=filieres)
+                pro = professionnal(user=request.user, working=travail, jobs=metier, jobs_description=description, cv=cv , image_de_profil=image)
+                user_id.save()
+                person.save()
+                spirituel.save()
+                school.save()
+                pro.save()
+                return redirect('detail')
+            else:
+                messages.info(request, "Veuillez charger un fichier valide")
         
-        person.save()
-        spirituel.save()
-        school.save()
-        pro.save()
-        
-        return redirect('detail')
         
     context ={
         'user': user
@@ -166,33 +174,42 @@ def update_info(request, id):
         cv = request.FILES.get("cv")
         image = request.FILES.get('image')
         
-        info_person.number = numero
-        info_person.birthday = date
-        info_person.living_town = location
-        info_person.commune = commune
-        info_person.status = status
-        info_person.domaines = domaines
-        info_person.genre =genre
-        info_spirit.water_baptem = baptism_water
-        info_spirit.spirit_baptem = baptism_spirit
-        info_spirit.department = community
-        info_spirit.young_crue = jeunesse
-        info_scolaire.school_level = niveau
-        info_scolaire.last_diplom = diplomes
-        info_scolaire.type_bac = series
-        info_scolaire.fields = filieres
-        info_professionnal.working = travail
-        info_professionnal.jobs = metier
-        info_professionnal.jobs_description = description
-        info_professionnal.cv = cv
-        info_professionnal.image_de_profil = image
         
-        info_person.save()
-        info_professionnal.save()
-        info_scolaire.save()
-        info_spirit.save()
         
-        return redirect('detail')
+        
+        if cv and image:
+            extension_cv = cv.name.split('.')[-1].lower()
+            extension_image = image.name.split('.')[-1].lower()
+            if extension_cv in list_cv and extension_image:
+                info_person.number = numero
+                info_person.birthday = date
+                info_person.living_town = location
+                info_person.commune = commune
+                info_person.status = status
+                info_person.domaines = domaines
+                info_person.genre =genre
+                info_spirit.water_baptem = baptism_water
+                info_spirit.spirit_baptem = baptism_spirit
+                info_spirit.department = community
+                info_spirit.young_crue = jeunesse
+                info_scolaire.school_level = niveau
+                info_scolaire.last_diplom = diplomes
+                info_scolaire.type_bac = series
+                info_scolaire.fields = filieres
+                info_professionnal.working = travail
+                info_professionnal.jobs = metier
+                info_professionnal.jobs_description = description
+                info_professionnal.cv = cv
+                info_professionnal.image_de_profil = image  
+                info_person.save()
+                info_professionnal.save()
+                info_scolaire.save()
+                info_spirit.save()
+                return redirect('detail')
+            else:
+                messages.info(request, "Veuillez charger un fichier valide")
+        
+        
     
     context = {
         'info_persons': info_persons,

@@ -13,7 +13,7 @@
               <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
   
                 <div class="d-flex justify-content-center py-4">
-                  <a href="{% url 'index' %}" class="logo d-flex align-items-center w-auto">
+                  <a href="#" class="logo d-flex align-items-center w-auto">
                     <img src="{% static 'assets/img/logo.png'%}" alt="">
                     <span class="d-none d-lg-block">DB annexe</span>
                   </a>
@@ -34,19 +34,19 @@
                     <form class="row g-3 needs-validation" novalidate method="POST">
                       {% csrf_token %}
                         <div class="col-md-12">
-                          <label for="inputName5"  class="form-label">Nom d'utilisateur</label>
-                          <input type="text" name="username" class="form-control" id="inputName5">
+                          {% comment %} <label for="inputName5"  class="form-label">Nom d'utilisateur</label> {% endcomment %}
+                          <input type="text" name="username" class="form-control" id="inputName5" placeholder="Nom d'utilisateur">
                         </div>
                        
                         <div class="col-md-12">
-                          <label for="inputPassword5" class="form-label">Mot de passe</label>
-                          <input type="password" name="password" class="form-control" id="inputPassword5">
+                          {% comment %} <label for="inputPassword5" class="form-label">Mot de passe</label> {% endcomment %}
+                          <input type="password" name="password" class="form-control" id="inputPassword5" placeholder="Mot de passe">
                         </div>
                         <div class="text-center">
                           <button type="submit" class="btn btn-primary">Se connecter</button>
                         </div>
                         <div class="col-md-12 text-center">
-                          Pas de compte😢?<a href="{% url 'registre' %}">Créez votre comptre👌</a>
+                          Pas de compte?<a href="{% url 'registre' %}"> Enregistrez-vous👌!</a>
                         </div>
                         </form>
                     </form>

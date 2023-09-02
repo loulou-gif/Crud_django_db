@@ -58,18 +58,24 @@
                       <!-- Profile Edit Form -->
                       <form class="row g-3" class="row g-3 needs-validation" method="POST" enctype="multipart/form-data" >
                         {% csrf_token %}
-                        <div class="pt-4 pb-2">
+                        <div class="pt-1 pb-0">
+                          {% csrf_token %}
+                          {% for info in messages %}
+                          <p class="alert alert-danger text-center">{{ info }}</p>
+                          {%endfor%}
+                        </div>
+                        <div class="pt-0 pb-1">
                             <h5 class="card-title text-center pb-0 fs-4">Informations d'identification</h5>
                             <p class="text-center small"></p>
                           </div>
                           
                         <div class="col-md-4">
                             <label for="inputName5" class="form-label">Nom</label>
-                            <input disabled type="text" value ="{{user.last_name}}" name="name" class="inputChange form-control" id="inputName5">
+                            <input disabled type="text" value ="{{user.last_name}}" name="name" class="form-control" id="inputName5">
                           </div>
                           <div class="col-md-4">
                             <label for="inputName5" class="form-label">Prénoms</label>
-                            <input disabled type="text" value ="{{user.first_name}}" name="prenoms" class="inputChange form-control" id="inputName5">
+                            <input disabled type="text" value ="{{user.first_name}}" name="prenoms" class="form-control" id="inputName5">
                           </div>
     
                           <div class="col-md-4">
@@ -85,7 +91,7 @@
     
                           <div class="col-md-4">
                             <label for="inputDate" class="form-label">Date de naissance</label>
-                            <input disabled type="date" value ="{{info.birthday}}" placeholder="{{info.birthday}}" name="date" class="inputChange form-control" id="inputDate">
+                            <input disabled type="date" placeholder="{{info.birthday}}" name="date" class="inputChange form-control" id="inputDate" required>
                           </div>
                           <div class="col-md-4">
                             <label for="inputAddress5" class="form-label">Ville de résidence</label>
@@ -425,13 +431,13 @@
                         <div class="col mb-3">
                             <label for="inputPictures" class="col-sm-2 col-form-label">mon cv</label>
                             <div class="col-sm-12">
-                              <input disabled class="inputChange form-control" value = "{{info.cv}}" name="cv" type="file" id="formFile">
+                              <input disabled class="inputChange form-control" value = "{{info.cv}}" name="cv" type="file" id="formFile" required>
                             </div>
                         </div>
                         <div class="col mb-3">
                             <label for="inputPictures" class="col-sm-4 col-form-label">Photo de profil</label>
                             <div class="col-sm-12">
-                              <input disabled class="inputChange form-control" value = "{{info.image_de_profil}}" name="image" type="file" id="formFile">
+                              <input disabled class="inputChange form-control" value = "{{info.image_de_profil}}" name="image" type="file" id="formFile" required>
                         </div>
                     </div>
                     {% endfor %}

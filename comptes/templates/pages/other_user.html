@@ -59,7 +59,13 @@
                       <form class="row g-3" class="row g-3 needs-validation" method="POST" enctype="multipart/form-data" >
 
                         {% csrf_token %}
-
+                        <div class="pt-4 pb-2">
+                          
+                          {% csrf_token %}
+                          {% for info in messages %}
+                          <p class="alert alert-danger text-center">{{ info }}</p>
+                          {%endfor%}
+                        </div>
                         <div class="pt-4 pb-2">
                             <h5 class="card-title text-center pb-0 fs-4">Informations d'identification</h5>
                             <p class="text-center small"></p>
