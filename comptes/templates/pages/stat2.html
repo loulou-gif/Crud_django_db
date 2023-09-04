@@ -31,7 +31,7 @@
                 <!-- Pie Chart -->
                 
   
-                <canvas id="pieChart" style="max-height: {{ pourcent_baptised }}%;"height="646"width="1941"></canvas>
+                <canvas id="pieChart" style="max-height: 300px; max-width: 600px;"></canvas>
                 <script>
                     document.addEventListener("DOMContentLoaded", () => {
                         new Chart(document.querySelector('#pieChart'), {
@@ -46,10 +46,17 @@
                                 }]
                             },
                             options: {
+                                maintainAspectRatio: false, // Permet de ne pas maintenir les proportions par défaut
                                 scales: {
                                     y: {
                                         beginAtZero: true,
                                         max: 100
+                                    }
+                                },
+                                plugins: {
+                                    legend: {
+                                        display: true,
+                                        position: 'bottom'
                                     }
                                 }
                             }
@@ -70,7 +77,7 @@
                 <!-- Pie Chart -->
                 
   
-                <canvas id="doughnutChart" style="max-height: {{ pourcent_born_again }}%;"height="646"width="1941"></canvas>
+                <canvas id="doughnutChart" style="max-height: 300px; max-width: 600px;"></canvas>
                 <script>
                     document.addEventListener("DOMContentLoaded", () => {
                         new Chart(document.querySelector('#doughnutChart'), {
@@ -85,10 +92,17 @@
                                 }]
                             },
                             options: {
+                                maintainAspectRatio: false, // Permet de ne pas maintenir les proportions par défaut
                                 scales: {
                                     y: {
                                         beginAtZero: true,
                                         max: 100
+                                    }
+                                },
+                                plugins: {
+                                    legend: {
+                                        display: true,
+                                        position: 'bottom'
                                     }
                                 }
                             }

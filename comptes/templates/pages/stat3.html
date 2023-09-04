@@ -31,7 +31,7 @@
                 <!-- Pie Chart -->
                 
                 
-                <canvas id="pieChart" style="max-height: {{ pourcent_not_diplomed }}%;"></canvas>
+                <canvas id="pieChart" style="max-height: 300px; max-width: 600px;"></canvas>
                 <script>
                     document.addEventListener("DOMContentLoaded", () => {
                         new Chart(document.querySelector('#pieChart'), {
@@ -46,18 +46,25 @@
                                 }]
                             },
                             options: {
-                                scales: {
-                                    y: {
-                                        beginAtZero: true,
-                                        max: 100
-                                    }
-                                }
-                            }
+                              maintainAspectRatio: false, // Permet de ne pas maintenir les proportions par défaut
+                              scales: {
+                                  y: {
+                                      beginAtZero: true,
+                                      max: 100
+                                  }
+                              },
+                              plugins: {
+                                  legend: {
+                                      display: true,
+                                      position: 'bottom'
+                                  }
+                              }
+                          }
                         });
                     });
                 </script>
                 
-                <p>Avec {{ number_diplomed }} jeunes titulaire du BACCALAUREAT sur un total de {{ total }} jeunes dans l'église</p>  
+                <p>Avec {{ number_diplomed }} Bachelier sur {{ total }} jeunes dans l'église</p>  
               </div>
              </div>
             </div>

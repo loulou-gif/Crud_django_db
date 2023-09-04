@@ -31,7 +31,7 @@
               <!-- Pie Chart -->
               
 
-              <canvas id="pieChart" style="max-height: {{ pour_hommes }}%;" height="646"width="1941"></canvas>
+              <canvas id="pieChart" style="max-height: 300px; max-width: 600px;"></canvas>
               <script>
                   document.addEventListener("DOMContentLoaded", () => {
                       new Chart(document.querySelector('#pieChart'), {
@@ -46,13 +46,20 @@
                               }]
                           },
                           options: {
-                              scales: {
-                                  y: {
-                                      beginAtZero: true,
-                                      max: 100
-                                  }
-                              }
-                          }
+                            maintainAspectRatio: false, // Permet de ne pas maintenir les proportions par défaut
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    max: 100
+                                }
+                            },
+                            plugins: {
+                                legend: {
+                                    display: true,
+                                    position: 'bottom'
+                                }
+                            }
+                        }
                       });
                   });
               </script>
@@ -69,7 +76,7 @@
               <h5 class="card-title">Nombres de jeunes en emploie dans l'église</h5>
 
               <!-- Pour les employées -->
-              <canvas id="doughnutChart" style="max-height: {{ pour_employer }}%;" height="646"width="1941"></canvas>
+              <canvas id="doughnutChart" style="max-height: 300px; max-width: 600px;%;"></canvas>
               <script>
                   document.addEventListener("DOMContentLoaded", () => {
                       new Chart(document.querySelector('#doughnutChart'), {
@@ -84,13 +91,20 @@
                               }]
                           },
                           options: {
-                              scales: {
-                                  y: {
-                                      beginAtZero: true,
-                                      max: 100
-                                  }
-                              }
-                          }
+                            maintainAspectRatio: false, // Permet de ne pas maintenir les proportions par défaut
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    max: 100
+                                }
+                            },
+                            plugins: {
+                                legend: {
+                                    display: true,
+                                    position: 'bottom'
+                                }
+                            }
+                        }
                       });
                   });
               </script>
