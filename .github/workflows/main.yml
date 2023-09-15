@@ -14,7 +14,7 @@ jobs:
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
-        server: 54.212.30.158
+        server: 35.163.158.193
         username: ${{ secrets.ftp_username}}
         password: ${{ secrets.ftp_password }}
-        server-dir: /DB_annexe/Crud_django_db/
+        server-dir: /Crud_django_db/
