@@ -1,4 +1,4 @@
-on: push
+on:
   push:
     branches:
       - main
@@ -15,6 +15,6 @@ jobs:
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
         server: 54.212.30.158
-        username: ${{ secrets.ftp_username }}
+        username: ${{ secrets.ftp_username}}
         password: ${{ secrets.ftp_password }}
         server-dir: /DB_annexe/Crud_django_db/
