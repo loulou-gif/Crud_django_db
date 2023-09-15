@@ -13,5 +13,7 @@ RUN pip install -r requirements.txt
 # Copie le code source du projet dans le conteneur
 COPY . .
 
+EXPOSE 8000
+
 # Exécute les commandes nécessaires pour lancer le serveur Django
 CMD python manage.py migrate && python manage.py runserver 0.0.0.0:8000
