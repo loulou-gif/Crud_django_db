@@ -1,11 +1,17 @@
 pipeline {
     agent any
-    
-    when {
-        // Déclencher le pipeline uniquement pour les push ou les pull requests
-        expression { currentBuild.rawBuild.causes.any { it.class.toString().contains('GitHubPushCause') } }
+    stages {
+        stage('Exemple') {
+            steps {
+                // Vos étapes ici
+            }
+        }
     }
-
+    when {
+        expression { currentBuild.resultIsBetterOrEqualTo('SUCCESS') }
+        beforeAgent true
+    }
+    
     stages {
         stage('Arrêter et supprimer le conteneur existant') {
             steps {
