@@ -54,7 +54,8 @@
                               <td><a class="white"href="{% url 'details' membre.id %}"><button type="submit" class="btn btn-primary">Détails</button></a></td>
                               
                             </tr> 
-                            {% endfor %}                     
+                            {% endfor %}
+                              <a class="white" href="{% url 'export' %}"><button class=" btn btn-success"> Exporter</button> </a>                  
                           </tbody>
                   </table>
                   <!-- End Table with stripped rows -->

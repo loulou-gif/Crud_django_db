@@ -15,5 +15,6 @@ urlpatterns = [
     path('stat4',views.stat4, name="stat4"),
     path('home',views.other_user, name="home"),
     path('update/<int:id>',views.update_info, name="update"),
-    path('detail',views.detail, name="detail")
+    path('detail',views.detail, name="detail"),
+    path('export',views.export_data, name="export"),
 ]

@@ -10,6 +10,9 @@ from django.contrib.auth.models import User
 from .models import Person, spirit, scolaire, professionnal
 from .decorators import only_admin, match, genre, new
 from django.contrib.auth.decorators import login_required
+import csv
+from django.http import HttpResponse
+from colorama import Fore, Style
 
 # Create your views here.
 
@@ -407,3 +410,69 @@ def stat4(request):
         'total': total
     }    
     return render(request, 'pages/stat4.html', context)
+
+
+import xlwt
+from django.http import HttpResponse
+from .models import User, Person, spirit, scolaire, professionnal
+from datetime import datetime
+
+def export_data(request):
+    response = HttpResponse(content_type='application/ms-excel')
+    response['Content-Disposition'] = 'attachment; filename=donnees_jeunesse.xls'
+
+    wb = xlwt.Workbook(encoding='utf-8')
+    ws = wb.add_sheet('Data')
+
+    # Définir le style pour les en-têtes
+    header_style = xlwt.easyxf('pattern: pattern solid, fore_colour orange; font: bold True;')
+
+    # Headers
+    headers = ['Nom d\'utilisateur', 'Nom','Prénoms', 'Email', 'Date de naissance', 'Ville de résidence', 'Commune', 'numéro de téléphone', 'Status matrimonial', 'Domaines d\'activité', 'Genre', 'Groupe de jeunesse', 'Département', 'Baptême d\'eau', 'Baptême du saint esprit', 'Niveau d\'étude', 'Dernier diplôme', 'Série du bac', 'Filière', 'En activité', 'Metiers', 'Description metiers']
+    for col, header in enumerate(headers):
+        ws.write(0, col, header, header_style)  # Appliquer le style aux en-têtes
+
+    row_index = 1
+
+    # Récupérer tous les utilisateurs
+    users = User.objects.all()
+
+    for user in users:
+        person = Person.objects.filter(user=user).first()
+        if person:
+            ws.write(row_index, 0, user.username)
+            ws.write(row_index, 1, user.last_name)
+            ws.write(row_index, 2, user.first_name)
+            ws.write(row_index, 3, user.email)
+            ws.write(row_index, 4, person.birthday.strftime('%m-%d-%y'))  # Formater la date de naissance
+            ws.write(row_index, 5, person.living_town)
+            ws.write(row_index, 6, person.commune)
+            ws.write(row_index, 7, person.number)
+            ws.write(row_index, 8, person.status)
+            ws.write(row_index, 9, person.domaines)
+            ws.write(row_index, 10, person.genre)
+        
+            spirit_obj = spirit.objects.filter(user=user).first()
+            if spirit_obj:
+                ws.write(row_index, 11, spirit_obj.young_crue)
+                ws.write(row_index, 12, spirit_obj.department)
+                ws.write(row_index, 13, spirit_obj.water_baptem)
+                ws.write(row_index, 14, spirit_obj.spirit_baptem)
+            
+            scolaire_obj = scolaire.objects.filter(user=user).first()
+            if scolaire_obj:
+                ws.write(row_index, 15, scolaire_obj.school_level)
+                ws.write(row_index, 16, scolaire_obj.last_diplom)
+                ws.write(row_index, 17, scolaire_obj.type_bac)
+                ws.write(row_index, 18, scolaire_obj.fields)
+            
+            professionnal_obj = professionnal.objects.filter(user=user).first()
+            if professionnal_obj:
+                ws.write(row_index, 19, professionnal_obj.working)
+                ws.write(row_index, 20, professionnal_obj.jobs)
+                ws.write(row_index, 21, professionnal_obj.jobs_description)
+        
+            row_index += 1
+
+    wb.save(response)
+    return response
