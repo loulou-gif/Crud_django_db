@@ -5,7 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 
 class registreForm(UserCreationForm):
     username = forms.CharField( widget=forms.TextInput(attrs={
-        'class': 'form-controls ', 'placeholder' : 'Nom d\'utilisateu'
+        'class': 'form-controls ', 'placeholder' : 'Nom d\'utilisateur'
     }))
     last_name = forms.CharField( widget=forms.TextInput(attrs={
         'class': 'form-controls ', 'placeholder' : 'Nom'
