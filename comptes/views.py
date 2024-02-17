@@ -100,7 +100,7 @@ def other_user(request):
         genre = request.POST.get('genre')      
         baptism_water = request.POST.get('water')
         baptism_spirit = request.POST.get('spirit')
-        community = request.POST.get('community')
+        community = request.POST.getlist('community')
         jeunesse = request.POST.get('crue')
         niveau = request.POST.get('level')
         diplomes = request.POST.get('diplomes')
@@ -113,7 +113,7 @@ def other_user(request):
         cv = request.FILES.get("cv")
         image = request.FILES.get('image')
         is_staff = True
-        
+        community_str = ', '.join(community)
         if cv and image:
             extension_cv = cv.name.split('.')[-1].lower()
             extension_image = image.name.split('.')[-1].lower()
@@ -121,7 +121,7 @@ def other_user(request):
                 user_id = User.objects.get(id=request.user.id)
                 user_id.is_staff = is_staff
                 person = Person(user=request.user,number=numero, birthday=date, living_town=location, commune=commune, status=status, domaines=domaines, genre=genre)
-                spirituel = spirit(user=request.user, water_baptem=baptism_water, spirit_baptem=baptism_spirit, young_crue=community, department=jeunesse)
+                spirituel = spirit(user=request.user, water_baptem=baptism_water, spirit_baptem=baptism_spirit, young_crue=community_str, department=jeunesse)
                 school = scolaire(user=request.user, school_level=niveau, last_diplom=diplomes, type_bac=series, fields=filieres)
                 pro = professionnal(user=request.user, working=travail, jobs=metier, jobs_description=description, cv=cv , image_de_profil=image)
                 user_id.save()
@@ -164,7 +164,7 @@ def update_info(request, id):
         genre = request.POST.get('genre')      
         baptism_water = request.POST.get('water')
         baptism_spirit = request.POST.get('spirit')
-        community = request.POST.get('community')
+        community = request.POST.getlist('community')
         jeunesse = request.POST.get('crue')
         niveau = request.POST.get('level')
         diplomes = request.POST.get('diplomes')
@@ -176,7 +176,7 @@ def update_info(request, id):
         description = request.POST.get('description')
         cv = request.FILES.get("cv")
         image = request.FILES.get('image')
-        
+        community_str = ', '.join(community)
         
         
         
@@ -193,7 +193,7 @@ def update_info(request, id):
                 info_person.genre =genre
                 info_spirit.water_baptem = baptism_water
                 info_spirit.spirit_baptem = baptism_spirit
-                info_spirit.department = community
+                info_spirit.department = community_str
                 info_spirit.young_crue = jeunesse
                 info_scolaire.school_level = niveau
                 info_scolaire.last_diplom = diplomes
