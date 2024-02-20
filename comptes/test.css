@@ -1,0 +1,12 @@
+.input{
+    display: flex;
+    direction: column;
+}
+
+#active{
+
+}
+
+#disable{
+    display: none;
+}

@@ -56,7 +56,7 @@
                   </ul>
     
                       <!-- Profile Edit Form -->
-                      <form class="row g-3" class="row g-3 needs-validation" method="POST" enctype="multipart/form-data" >
+                      <form class="row g-3 needs-validation" method="POST" enctype="multipart/form-data" >
                         {% csrf_token %}
                         <div class="pt-1 pb-0">
                           {% csrf_token %}
@@ -368,37 +368,46 @@
                     
                     <div class="pt-2 pb-2">
                         <h5 class="card-title text-center pb-0 fs-4">Informations Professionnel</h5>
-                        <p class="text-center small"></p>
-                      </div>
+                        {% comment %} <p class="text-center small"></p> {% endcomment %}
+                    </div>
                     {% for info in info_persons  %}
                     <div class="col-md-12">
+                      <label for=""  class="form-label">Travaillez vous?</label>
+                      <select disabled id="selectField" name="travail" class="inputChange form-select">
+                          <option value="oui" selected>Oui</option>
+                          <option value="non">Non</option>
+                      </select>
+                  </div>
+                  <div id="hiddenFields" class="">
+                      
+                    <div class="col-md-12">
                       <label for="inputText5" class="form-label">Dans quelle domaine êtes vous???</label>
-                      <div class="col-md-12">
-                        <select disabled id="inputState" name="domaines" class="inputChange form-select">
-                          <option selected>{{info.domaines}}</option>
-                          <option>Agriculture</option>
-                          <option>Télécommunications</option>
-                          <option>Pétrole et gaz</option>
-                          <option>Banque et finance</option>
-                          <option>Énergie</option>
-                          <option>Agriculture</option>
-                          <option>Tourisme</option>
-                          <option>Commerce</option>
-                          <option>Construction et immobilier</option>
-                          <option>Manufacturier</option>
-                          <option>Services</option>
-                          <option>Transport et logistique</option>
-                          <option>Technologie de l'information</option>
-                          <option>Éducation</option>
-                          <option>Santé</option>
-                          <option>Média et communication</option>
-                          <option>Mode et textile</option>
-                          <option>Art et culture</option>
-                          <option>Restauration</option>
-                          <option>Automobile</option>
-                          <option>Environnement</option>
-                        </select>
-                    </div>
+                        <div class="col-md-12">
+                          <select disabled id="inputState" name="domaines" class="inputChange form-select">
+                            <option selected>{{info.domaines}}</option>
+                            <option>Agriculture</option>
+                            <option>Télécommunications</option>
+                            <option>Pétrole et gaz</option>
+                            <option>Banque et finance</option>
+                            <option>Énergie</option>
+                            <option>Agriculture</option>
+                            <option>Tourisme</option>
+                            <option>Commerce</option>
+                            <option>Construction et immobilier</option>
+                            <option>Manufacturier</option>
+                            <option>Services</option>
+                            <option>Transport et logistique</option>
+                            <option>Technologie de l'information</option>
+                            <option>Éducation</option>
+                            <option>Santé</option>
+                            <option>Média et communication</option>
+                            <option>Mode et textile</option>
+                            <option>Art et culture</option>
+                            <option>Restauration</option>
+                            <option>Automobile</option>
+                            <option>Environnement</option>
+                          </select>
+                      </div>
                     </div>
                     {% endfor %}  
                     {% for  info in info_professionnals %}
@@ -420,7 +429,7 @@
                                   </label>
                               </div>
                           </div>
-                      </fieldset>
+                    </fieldset>
                     <div class="col-md-12">
                       <label for="inputText5" class="form-label">Que faites vous actuellement comme metier</label>
                       <input disabled type="text" value ="{{info.jobs}}" name="metier" class="inputChange form-control" id="inputText5" placeholder='EXP(Commerce ou encore)'>
@@ -429,17 +438,19 @@
                       <label for="inputTextarea" class="form-label">Description du metier que vous faites.</label>
                       <textarea disabled class="inputChange form-control" value = "" name="description" id="inputTextarea">{{info.jobs_description}}</textarea>
                     </div>
+                  </div>
                     <div class="row mb-3">
                         <div class="col mb-3">
-                            <label for="inputPictures" class="col-sm-2 col-form-label">mon cv</label>
+                            <label for="inputPictures" class="col-sm-6 col-form-label">mon cv</label>
                             <div class="col-sm-12">
                               <input disabled class="inputChange form-control" value = "{{info.cv}}" name="cv" type="file" id="formFile" required>
                             </div>
                         </div>
                         <div class="col mb-3">
-                            <label for="inputPictures" class="col-sm-4 col-form-label">Photo de profil</label>
+                            <label for="inputPictures" class="col-sm-12 col-form-label">Photo de profil</label>
                             <div class="col-sm-12">
                               <input disabled class="inputChange form-control" value = "{{info.image_de_profil}}" name="image" type="file" id="formFile" required>
+                            </div>
                         </div>
                     </div>
                     {% endfor %}
@@ -447,7 +458,7 @@
                         <button type="button" id = "change" class="btn btn-primary">MODIFIER</button>
                         <button type="Submit" class="inputChange btn btn-success" disabled>SAUVEGARDER</button>
                     </div>
-                      </form><!-- End Profile Edit Form --> 
+                    </form><!-- End Profile Edit Form --> 
     
     
                   </div><!-- End Bordered Tabs -->
@@ -470,6 +481,18 @@
                     input.disabled = !input.disabled;
                 }) ;
             });
+            document.addEventListener("DOMContentLoaded", function() {
+              const selectField = document.getElementById("selectField");
+              const hiddenFields = document.getElementById("hiddenFields");
+          
+              selectField.addEventListener("change", function() {
+                  if (selectField.value === "oui") {
+                      hiddenFields.style.display = "block";
+                  } else {
+                      hiddenFields.style.display = "none";
+                  }
+              });
+          });
         </script>
         {% include 'main/footer/footer.html' %}
     </footer>

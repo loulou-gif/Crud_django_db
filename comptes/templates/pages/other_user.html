@@ -383,82 +383,70 @@
                       </div>
 
                     <div class="col-md-12">
-                      <label for="inputText5" class="form-label">Dans quelle domaine êtes vous???</label>
-                      <div class="col-md-12">
-                        <select id="inputState" name="domaines" class="form-select">
-                          <option selected>Autres Domaines</option>
-                          <option>Agriculture</option>
-                          <option>Télécommunications</option>
-                          <option>Pétrole et gaz</option>
-                          <option>Banque et finance</option>
-                          <option>Énergie</option>
-                          <option>Agriculture</option>
-                          <option>Tourisme</option>
-                          <option>Commerce</option>
-                          <option>Construction et immobilier</option>
-                          <option>Manufacturier</option>
-                          <option>Services</option>
-                          <option>Transport et logistique</option>
-                          <option>Technologie de l'information</option>
-                          <option>Éducation</option>
-                          <option>Santé</option>
-                          <option>Média et communication</option>
-                          <option>Mode et textile</option>
-                          <option>Art et culture</option>
-                          <option>Restauration</option>
-                          <option>Automobile</option>
-                          <option>Environnement</option>
+                        <label for="inputState"  class="form-label">Travaillez vous?</label>
+                        <select id="selectField" name="travail" class="form-select">
+                            <option value="oui" selected>Oui</option>
+                            <option value="non">Non</option>
                         </select>
                     </div>
+                    
+                    <div class="" id="hiddenFields">
+                      <div class="col-md-12">
+                        <label for="inputText5" class="form-label">Dans quelle domaine êtes vous???</label>
+                          <div class="col-md-12">
+                            <select id="inputState" name="domaines" class="form-select">
+                              <option selected>N/D</option>
+                              <option >Autres Domaines</option>
+                              <option>Agriculture</option>
+                              <option>Télécommunications</option>
+                              <option>Pétrole et gaz</option>
+                              <option>Banque et finance</option>
+                              <option>Énergie</option>
+                              <option>Agriculture</option>
+                              <option>Tourisme</option>
+                              <option>Commerce</option>
+                              <option>Construction et immobilier</option>
+                              <option>Manufacturier</option>
+                              <option>Services</option>
+                              <option>Transport et logistique</option>
+                              <option>Technologie de l'information</option>
+                              <option>Éducation</option>
+                              <option>Santé</option>
+                              <option>Média et communication</option>
+                              <option>Mode et textile</option>
+                              <option>Art et culture</option>
+                              <option>Restauration</option>
+                              <option>Automobile</option>
+                              <option>Environnement</option>
+                            </select>
+                          </div>
+                      </div>
+                      <div class="col-md-12">
+                        <label for="inputText5" class="form-label">Que faites vous actuellement comme metier</label>
+                        <input type="text" name="metier" class="form-control" value="N/D" id="inputText5"  placeholder='EXP(Commerce ou encore)'>
+                      </div>
+                      <div class="col-md-12">
+                        <label for="inputTextarea" class="form-label">Description du metier que vous faites.</label>
+                        <textarea class="form-control" name="description" id="inputTextarea">N/D</textarea>
+                      </div>
                     </div>
-                    <fieldset class="row-md-12">
-                      <legend class="col-form-label col-sm-10 pt-0">Domaines d'activité</legend>
-                          <div class="col-sm-10">
-                              <div class="form-check">
-                                  <input class="form-check-input" type="radio" name="travail" id="buzy1" value="oui" checked>
-                                  <label class="form-check-label" for="buzy1">
-                                      Oui
-                                  </label>
+                      <div class="row mb-3">
+                          <div class="col mb-3">
+                              <label for="inputPictures" class="col-sm-4 col-form-label">mon cv</label>
+                              <div class="col-sm-12">
+                                <input class="form-control" name="cv" type="file" id="formFile">
                               </div>
                           </div>
-                          <div class="col-sm-10">
-                              <div class="form-check">
-                                  <input class="form-check-input" type="radio" name="travail" id="buzy2" value="non" checked>
-                                  <label class="form-check-label" for="buzy2">
-                                      Non
-                                  </label>
+                          <div class="col mb-3">
+                              <label for="inputPictures" class="col-sm-6 col-form-label">Photo de profil</label>
+                              <div class="col-sm-12">
+                                <input class="form-control" name="image" type="file" id="formFile">
                               </div>
                           </div>
-                      </fieldset>
-                    <div class="col-md-12">
-                      <label for="inputText5" class="form-label">Que faites vous actuellement comme metier</label>
-                      <input type="text" name="metier" class="form-control" id="inputText5" placeholder='EXP(Commerce ou encore)'>
-                    </div>
-                    <div class="col-md-12">
-                      <label for="inputTextarea" class="form-label">Description du metier que vous faites.</label>
-                      <textarea class="form-control" name="description" id="inputTextarea"></textarea>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col mb-3">
-                            <label for="inputPictures" class="col-sm-2 col-form-label">mon cv</label>
-                            <div class="col-sm-12">
-                              <input class="form-control" name="cv" type="file" id="formFile">
-                            </div>
-                        </div>
-                        <div class="col mb-3">
-                            <label for="inputPictures" class="col-sm-4 col-form-label">Photo de profil</label>
-                            <div class="col-sm-12">
-                              <input class="form-control" name="image" type="file" id="formFile">
-                        </div>
-                        {% comment %} <div class="col-12">
-                          <div class="form-check">
-                            <input class="form-check-input" name="True" type="checkbox" value="on" id="acceptTerms" required>
-                            <label class="form-check-label" for="acceptTerms">J'accepte que ces données soit visible uniquement par les responsables et le pasteur</label>
-                            <div class="invalid-feedback">You must agree before submitting.</div>
-                          </div>
-                        </div> {% endcomment %}
-                    </div>
-
+                      </div>
+  
+                    
+                    
                     <div class="text-center">
                         <button type="submit" class="btn btn-success">ENREGISTRER</button>
                     </div>
@@ -476,5 +464,19 @@
       </main><!-- End #main -->
     <footer>
         {% include 'main/footer/footer.html' %}
+        <script>
+          document.addEventListener("DOMContentLoaded", function() {
+              const selectField = document.getElementById("selectField");
+              const hiddenFields = document.getElementById("hiddenFields");
+          
+              selectField.addEventListener("change", function() {
+                  if (selectField.value === "oui") {
+                      hiddenFields.style.display = "block";
+                  } else {
+                      hiddenFields.style.display = "none";
+                  }
+              });
+          });
+      </script>   
     </footer>
 </body>

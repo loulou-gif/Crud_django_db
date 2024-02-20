@@ -78,10 +78,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'annexe',
-        'USER':	'annexe',
-        'PASSWORD': 'K4dk272001@',
-        'HOST':	'localhost',
-        'PORT':	'5432',
+	'USER':	'annexe',
+	'PASSWORD': 'K4dk272001@',
+	'HOST':	'localhost',
+	'PORT':	'5432',
     }
 }
 
