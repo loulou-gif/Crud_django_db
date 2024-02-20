@@ -97,7 +97,7 @@
 
                       {% for info in info_spirits%}
                       <div class="row">
-                        <div class="col-lg-3 col-md-4 label">Né de nouveau</div>
+                        <div class="col-lg-3 col-md-4 label">Baptisé d'eau</div>
                         <div class="col-lg-9 col-md-8">{{info.water_baptem}}</div>
                       </div>
     
@@ -163,7 +163,7 @@
 
                       <div class="row">
                         <div class="col-lg-3 col-md-4 label">Cv</div>
-                        <div class="col-lg-9 col-md-8"><a href="/media/{{info.cv}}" target="_blank" >CV de {{user.name}}</a></div>
+                        <div class="col-lg-9 col-md-8"><a href="/media/{{info.cv}}" target="_blank" >CV de {{info.username}}</a></div>
                       </div>
                       {% endfor %}
                       <div class="text-center">
