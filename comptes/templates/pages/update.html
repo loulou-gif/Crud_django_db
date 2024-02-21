@@ -226,7 +226,7 @@
                       <div class="col-md-6">
                         <label for="inputState" value = ""   class="form-label">Groupe de jeunesse</label>
                         <select disabled id="inputState" name="crue" class="inputChange form-select">
-                          <option selected>{{info.young_crue}}</option>
+                          <option selected>{{info.department}}</option>
                           <option>Esther</option>
                           <option>Josué</option>
                           <option>Emmanuel</option>
@@ -237,7 +237,7 @@
                     <div class="col-md-6">
                         <label for="inputState" value =""  class="form-label">Departement:</label>
                         <select disabled id="inputState" name="community" class="inputChange form-select" multiple>
-                          <option selected>{{info.department}}</option>
+                          <option selected>{{info.young_crue}}</option>
                           <option>Ordre et acceuil</option>
                           <option>Commité social</option>
                           <option>Groupe musical</option>
@@ -422,7 +422,7 @@
                   </div>
                     <div class="row mb-3">
                         <div class="col mb-3">
-                            <label for="inputPictures" class="col-sm-6 col-form-label">mon cv</label>
+                            <label for="inputPictures" class="col-sm-6 col-form-label">CV</label>
                             <div class="col-sm-12">
                               <input disabled class="inputChange form-control" value = "{{info.cv}}" name="cv" type="file" id="formFile" required>
                             </div>
