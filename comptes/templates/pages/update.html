@@ -373,15 +373,15 @@
                     {% for info in info_persons  %}
                     <div class="col-md-12">
                       <label for=""  class="form-label">Travaillez vous?</label>
-                      <select disabled id="selectField" name="travail" class="inputChange form-select">
-                          <option value="oui" selected>Oui</option>
-                          <option value="non">Non</option>
+                      <select disabled id="selectField" name="travail" class="inputChange form-select" >
+                          <option value="non" selected>Non</option>
+                          <option value="oui">Oui</option>
                       </select>
                   </div>
-                  <div id="hiddenFields" class="">
+                  <div id="hiddenFields" class="" style="display: none;">
                       
                     <div class="col-md-12">
-                      <label for="inputText5" class="form-label">Dans quelle domaine êtes vous???</label>
+                      <label for="inputText5" class="form-label">Domaine d'activité</label>
                         <div class="col-md-12">
                           <select disabled id="inputState" name="domaines" class="inputChange form-select">
                             <option selected>{{info.domaines}}</option>
@@ -411,25 +411,6 @@
                     </div>
                     {% endfor %}  
                     {% for  info in info_professionnals %}
-                    <fieldset class="row-md-12">
-                      <legend class="col-form-label col-sm-10 pt-0">êtes vous en fonction dans ce domaines?</legend>
-                          <div class="col-sm-10">
-                              <div class="form-check">
-                                  <input disabled class="inputChange form-check-input" type="radio" name="travail" id="buzy1" value="oui" required>
-                                  <label class="inputChange form-check-label" for="buzy1">
-                                      Oui
-                                  </label>
-                              </div>
-                          </div>
-                          <div class="col-sm-10">
-                              <div class="form-check">
-                                  <input disabled class=" inputChange form-check-input" type="radio" name="travail" id="buzy2" value="non" required>
-                                  <label class="inputChange form-check-label" for="buzy2">
-                                      Non
-                                  </label>
-                              </div>
-                          </div>
-                    </fieldset>
                     <div class="col-md-12">
                       <label for="inputText5" class="form-label">Que faites vous actuellement comme metier</label>
                       <input disabled type="text" value ="{{info.jobs}}" name="metier" class="inputChange form-control" id="inputText5" placeholder='EXP(Commerce ou encore)'>
