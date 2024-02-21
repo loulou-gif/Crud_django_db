@@ -378,7 +378,7 @@
                           <option value="oui">Oui</option>
                       </select>
                   </div>
-                  <div id="hiddenFields" class="" style="display: none;">
+                  <div id="hiddenFields" class="" style="display: block;">
                       
                     <div class="col-md-12">
                       <label for="inputText5" class="form-label">Domaine d'activité</label>
@@ -462,7 +462,7 @@
                     input.disabled = !input.disabled;
                 }) ;
             });
-            document.addEventListener("DOMContentLoaded", function() {
+            {% comment %} document.addEventListener("DOMContentLoaded", function() {
               const selectField = document.getElementById("selectField");
               const hiddenFields = document.getElementById("hiddenFields");
           
@@ -473,7 +473,7 @@
                       hiddenFields.style.display = "none";
                   }
               });
-          });
+          }); {% endcomment %}
         </script>
         {% include 'main/footer/footer.html' %}
     </footer>

@@ -390,7 +390,7 @@
                         </select>
                     </div>
                     
-                    <div class="" id="hiddenFields" style="display: none;">
+                    <div class="" id="hiddenFields" style="display: block;">
                       <div class="col-md-12">
                         <label for="inputText5" class="form-label">Domaine d'activité</label>
                           <div class="col-md-12">
@@ -465,7 +465,7 @@
     <footer>
         {% include 'main/footer/footer.html' %}
         <script>
-          document.addEventListener("DOMContentLoaded", function() {
+          {% comment %} document.addEventListener("DOMContentLoaded", function() {
               const selectField = document.getElementById("selectField");
               const hiddenFields = document.getElementById("hiddenFields");
           
@@ -476,7 +476,7 @@
                       hiddenFields.style.display = "none";
                   }
               });
-          });
+          }); {% endcomment %}
       </script>   
     </footer>
 </body>
