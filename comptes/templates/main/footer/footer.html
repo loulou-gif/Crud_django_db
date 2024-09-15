@@ -23,7 +23,36 @@
   <script src="{% static 'assets/vendor/simple-datatables/simple-datatables.js' %}"></script>
   <script src="{% static 'assets/vendor/tinymce/tinymce.min.js' %}"></script>
   <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        let inactivityTime = function () {
+            let time;
+            
+            // Fonction de déconnexion
+            function logout() {
+                window.location.href = '/deconnexion'; // URL de déconnexion
+            }
 
+            // Réinitialiser le temporisateur d'inactivité
+            function resetTimer() {
+                clearTimeout(time);
+                time = setTimeout(logout, 300000); // 300000 ms = 5 minutes
+            }
+
+            // Écouter les événements d'activité
+            window.addEventListener('mousemove', resetTimer);
+            window.addEventListener('keydown', resetTimer);
+            window.addEventListener('scroll', resetTimer);
+            window.addEventListener('click', resetTimer);
+            window.addEventListener('touchstart', resetTimer);
+
+            // Initialiser le temporisateur
+            resetTimer();
+        };
+
+        inactivityTime();
+    });
+</script>
   <!-- Template Main JS File -->
   <script src="{% static 'assets/js/main.js' %}"></script>
 
