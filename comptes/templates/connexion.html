@@ -41,6 +41,12 @@
                           {% comment %} <label for="inputPassword5" class="form-label">Mot de passe</label> {% endcomment %}
                           <input type="password" name="password" class="form-control" id="inputPassword5" placeholder="Mot de passe">
                         </div>
+                        <div class="form-check col-md-12">
+                          <input class="inputChange form-check-input" type="checkbox" name="print" id="print" value="print">
+                          <label class="inputChange form-check-label" name="print" for="print">
+                              Afficher le mot de passe
+                          </label>
+                        </div>
                         <div class="text-center">
                           <button type="submit" class="btn btn-primary">Se connecter</button>
                         </div>
@@ -65,5 +71,18 @@
             </div>
         </div>
     </section>
+    <script> document.addEventListener("DOMContentLoaded", function() {
+      const selectField = document.getElementById("print");
+      const hiddenFields = document.getElementById("inputPassword5");
+  
+      selectField.addEventListener("change", function() {
+          if (selectField.checked) {
+              hiddenFields.type = "text";
+          } else {
+              hiddenFields.type = "password";
+          }
+      });
+  }); 
+  </script>
     {% comment %} {% include '../pages/footer.html' %} {% endcomment %}
 </body>
